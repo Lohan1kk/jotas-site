@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
-import { easeOutExpo } from "@/components/motion";
+import { ShotFrame } from "@/components/ShotFrame";
 import { site } from "@/lib/content";
 
 export function Story() {
@@ -48,25 +48,21 @@ export function Story() {
         </Reveal>
 
         <Reveal className="relative lg:col-span-7" delay={120}>
-          <motion.div
-            className="relative aspect-[4/5] overflow-hidden sm:aspect-[16/11]"
-            initial={reduce ? false : { scale: 1.04 }}
-            whileInView={reduce ? undefined : { scale: 1 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 1.2, ease: easeOutExpo }}
-          >
-            <Image
-              src="/brand/jogo-americano.png"
-              alt="Jogo americano do Jota's com identidade chalkboard e bem-vindo"
-              fill
-              sizes="(max-width: 1024px) 100vw, 55vw"
-              className="object-cover object-center"
-            />
-            <div
-              className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent"
-              aria-hidden="true"
-            />
-          </motion.div>
+          <ShotFrame className="w-full" animateIn={false}>
+            <div className="relative aspect-[4/5] sm:aspect-[16/11]">
+              <Image
+                src="/brand/jogo-americano.png"
+                alt="Jogo americano do Jota's com identidade chalkboard e bem-vindo"
+                fill
+                sizes="(max-width: 1024px) 100vw, 55vw"
+                className="object-cover object-center"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent"
+                aria-hidden="true"
+              />
+            </div>
+          </ShotFrame>
           <p className="mt-5 font-display text-2xl text-gold-soft md:text-3xl">
             “{site.tagline}”
           </p>

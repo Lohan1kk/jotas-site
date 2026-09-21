@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import { useRef } from "react";
 import { easeOutExpo, fadeUp, stagger } from "@/components/motion";
+import { ShotFrame } from "@/components/ShotFrame";
 import { site } from "@/lib/content";
 
 export function Hero() {
@@ -18,125 +19,157 @@ export function Hero() {
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const imageY = useTransform(
+
+  const frameInset = useTransform(
     scrollYProgress,
-    [0, 1],
-    reduce ? ["0%", "0%"] : ["0%", "14%"],
+    [0, 0.55],
+    reduce
+      ? ["0.75rem", "0.75rem"]
+      : ["clamp(0.75rem, 2.2vw, 1.75rem)", "0.2rem"],
   );
-  const imageScale = useTransform(
+  const frameRadius = useTransform(
+    scrollYProgress,
+    [0, 0.55],
+    reduce ? [28, 28] : [28, 14],
+  );
+  const mediaScale = useTransform(
     scrollYProgress,
     [0, 1],
-    reduce ? [1, 1] : [1.06, 1.16],
+    reduce ? [1.04, 1.04] : [1.04, 1.12],
+  );
+  const copyY = useTransform(
+    scrollYProgress,
+    [0, 0.4],
+    reduce ? [0, 0] : [0, 36],
   );
   const copyOpacity = useTransform(
     scrollYProgress,
-    [0, 0.45],
-    reduce ? [1, 1] : [1, 0.35],
+    [0, 0.4],
+    reduce ? [1, 1] : [1, 0.25],
   );
 
   return (
     <section
       ref={sectionRef}
       id="topo"
-      className="relative flex min-h-dvh items-end overflow-hidden"
+      className="relative min-h-[115dvh] overflow-hidden bg-ink"
       aria-label="Apresentação"
     >
-      <motion.div
-        className="absolute inset-0"
-        style={{ y: imageY, scale: imageScale }}
-      >
-        <Image
-          src="/brand/fachada-hero.jpg"
-          alt="Fachada e salão do Jota's Bar e Restaurante na Liberdade"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_42%]"
-        />
-      </motion.div>
-
       <div
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(12,11,10,0.35)_0%,rgba(12,11,10,0.15)_28%,rgba(12,11,10,0.55)_62%,rgba(12,11,10,0.92)_100%)]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_20%_85%,rgba(12,11,10,0.55),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_40%,rgba(92,63,40,0.22),transparent_70%),radial-gradient(ellipse_50%_40%_at_80%_10%,rgba(212,160,23,0.08),transparent_55%)]"
         aria-hidden="true"
       />
 
       <motion.div
-        style={{ opacity: copyOpacity }}
-        className="section-pad relative z-10 mx-auto w-full max-w-7xl pb-16 pt-32 sm:pb-20 md:pb-28 md:pt-40"
+        className="sticky top-0 z-10 h-dvh"
+        style={{ padding: frameInset }}
       >
-        <motion.div
-          className="max-w-3xl"
-          variants={reduce ? undefined : stagger}
-          initial={reduce ? false : "hidden"}
-          animate="show"
+        <ShotFrame
+          className="h-full w-full"
+          soup
+          corners
+          animateIn
+          glassStyle={{ borderRadius: frameRadius }}
         >
-          <motion.p
-            variants={reduce ? undefined : fadeUp}
-            className="font-display text-[clamp(3.5rem,12vw,8.5rem)] leading-[0.9] tracking-[0.04em] text-cream"
-          >
-            {site.shortName}
-          </motion.p>
+          <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
+            <motion.div className="absolute inset-0" style={{ scale: mediaScale }}>
+              <Image
+                src="/brand/fachada-hero.jpg"
+                alt="Fachada e salão do Jota's Bar e Restaurante na Liberdade"
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-[center_42%]"
+              />
+            </motion.div>
 
-          <motion.h1
-            variants={reduce ? undefined : fadeUp}
-            className="mt-6 max-w-xl font-display text-[clamp(1.65rem,3.6vw,2.75rem)] leading-[1.15] text-cream/92"
-          >
-            Boteco da Liberdade,{" "}
-            <span className="text-gold-soft">
-              {site.tagline.toLowerCase()}
-            </span>
-          </motion.h1>
-
-          <motion.p
-            variants={reduce ? undefined : fadeUp}
-            className="mt-5 max-w-md text-base leading-relaxed text-cream/70 md:text-lg"
-          >
-            Pratos do dia, lanches artesanais e porções para a mesa cheia — no
-            coração da Liberdade, SP.
-          </motion.p>
+            <div
+              className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,11,10,0.42)_0%,rgba(12,11,10,0.06)_30%,rgba(12,11,10,0.32)_58%,rgba(12,11,10,0.9)_100%)]"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute inset-0 bg-[radial-gradient(ellipse_65%_50%_at_18%_88%,rgba(12,11,10,0.55),transparent_60%)]"
+              aria-hidden="true"
+            />
+          </div>
 
           <motion.div
-            variants={reduce ? undefined : fadeUp}
-            className="mt-9 flex flex-wrap items-center gap-3"
+            style={{ y: copyY, opacity: copyOpacity }}
+            className="absolute inset-x-0 bottom-0 z-30 px-5 pb-8 pt-24 sm:px-8 sm:pb-10 md:px-12 md:pb-14 lg:px-16"
           >
-            <motion.a
-              href="#cardapio"
-              className="btn-primary"
-              whileHover={reduce ? undefined : { y: -2 }}
-              whileTap={reduce ? undefined : { scale: 0.98 }}
-              transition={{ duration: 0.2 }}
+            <motion.div
+              className="max-w-3xl"
+              variants={reduce ? undefined : stagger}
+              initial={reduce ? false : "hidden"}
+              animate="show"
             >
-              Ver cardápio
-            </motion.a>
-            <motion.a
-              href={site.whatsappReserve}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-ghost"
-              whileHover={reduce ? undefined : { y: -2 }}
-              whileTap={reduce ? undefined : { scale: 0.98 }}
-              transition={{ duration: 0.2 }}
-            >
-              Reservar mesa
-            </motion.a>
+              <motion.p
+                variants={reduce ? undefined : fadeUp}
+                className="font-display text-[clamp(3.25rem,11vw,7.75rem)] leading-[0.88] tracking-[0.04em] text-cream"
+              >
+                {site.shortName}
+              </motion.p>
+
+              <motion.h1
+                variants={reduce ? undefined : fadeUp}
+                className="mt-5 max-w-xl font-display text-[clamp(1.5rem,3.2vw,2.5rem)] leading-[1.15] text-cream/92"
+              >
+                Boteco da Liberdade,{" "}
+                <span className="text-gold-soft">
+                  {site.tagline.toLowerCase()}
+                </span>
+              </motion.h1>
+
+              <motion.p
+                variants={reduce ? undefined : fadeUp}
+                className="mt-4 max-w-md text-base leading-relaxed text-cream/70 md:text-lg"
+              >
+                Pratos do dia, lanches artesanais e porções para a mesa cheia —
+                no coração da Liberdade, SP.
+              </motion.p>
+
+              <motion.div
+                variants={reduce ? undefined : fadeUp}
+                className="mt-8 flex flex-wrap items-center gap-3"
+              >
+                <motion.a
+                  href="#cardapio"
+                  className="btn-primary"
+                  whileHover={reduce ? undefined : { y: -2 }}
+                  whileTap={reduce ? undefined : { scale: 0.98 }}
+                >
+                  Ver cardápio
+                </motion.a>
+                <motion.a
+                  href={site.whatsappReserve}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ghost"
+                  whileHover={reduce ? undefined : { y: -2 }}
+                  whileTap={reduce ? undefined : { scale: 0.98 }}
+                >
+                  Reservar mesa
+                </motion.a>
+              </motion.div>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </ShotFrame>
       </motion.div>
 
       <motion.div
-        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 md:block"
+        className="pointer-events-none absolute bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 z-20 hidden -translate-x-1/2 md:block"
         aria-hidden="true"
         initial={reduce ? false : { opacity: 0 }}
         animate={reduce ? undefined : { opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8, ease: easeOutExpo }}
+        transition={{ delay: 1.3, duration: 0.8, ease: easeOutExpo }}
       >
         <motion.span
-          className="block h-10 w-px bg-gradient-to-b from-gold/80 to-transparent"
-          animate={reduce ? undefined : { scaleY: [1, 0.55, 1], opacity: [0.9, 0.35, 0.9] }}
+          className="block h-9 w-px bg-gradient-to-b from-gold/70 to-transparent"
+          animate={
+            reduce
+              ? undefined
+              : { scaleY: [1, 0.5, 1], opacity: [0.85, 0.3, 0.85] }
+          }
           transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
           style={{ originY: 0 }}
         />
