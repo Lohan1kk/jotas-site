@@ -8,9 +8,15 @@ import {
   useTransform,
 } from "framer-motion";
 import { useRef } from "react";
-import { easeOutExpo, fadeUp, stagger } from "@/components/motion";
-import { ShotFrame } from "@/components/ShotFrame";
+import { easeOutExpo } from "@/components/motion";
 import { site } from "@/lib/content";
+
+const meta = [
+  { label: "Endereço", value: "Av. da Liberdade, 9 — SP" },
+  { label: "Horário", value: "Todos os dias · 6h–23h" },
+  { label: "Faixa", value: site.priceRange },
+  { label: "Google", value: `${site.reviewsCount} avaliações` },
+];
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -20,159 +26,137 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const frameInset = useTransform(
-    scrollYProgress,
-    [0, 0.55],
-    reduce
-      ? ["0.75rem", "0.75rem"]
-      : ["clamp(0.75rem, 2.2vw, 1.75rem)", "0.2rem"],
-  );
-  const frameRadius = useTransform(
-    scrollYProgress,
-    [0, 0.55],
-    reduce ? [28, 28] : [28, 14],
-  );
-  const mediaScale = useTransform(
+  const contentY = useTransform(
     scrollYProgress,
     [0, 1],
-    reduce ? [1.04, 1.04] : [1.04, 1.12],
+    reduce ? [0, 0] : [0, 90],
   );
-  const copyY = useTransform(
+  const contentOpacity = useTransform(
     scrollYProgress,
-    [0, 0.4],
-    reduce ? [0, 0] : [0, 36],
+    [0, 0.65],
+    reduce ? [1, 1] : [1, 0],
   );
-  const copyOpacity = useTransform(
+  const auroraY = useTransform(
     scrollYProgress,
-    [0, 0.4],
-    reduce ? [1, 1] : [1, 0.25],
+    [0, 1],
+    reduce ? ["0%", "0%"] : ["0%", "-22%"],
   );
 
   return (
     <section
       ref={sectionRef}
       id="topo"
-      className="relative min-h-[115dvh] overflow-hidden bg-ink"
+      className="relative isolate flex min-h-dvh flex-col justify-end overflow-hidden bg-[#080706]"
       aria-label="Apresentação"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_40%,rgba(92,63,40,0.22),transparent_70%),radial-gradient(ellipse_50%_40%_at_80%_10%,rgba(212,160,23,0.08),transparent_55%)]"
-        aria-hidden="true"
-      />
-
+      {/* Ambient key art — blurred so it reads as light, not photo */}
       <motion.div
-        className="sticky top-0 z-10 h-dvh"
-        style={{ padding: frameInset }}
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{ y: auroraY }}
+        aria-hidden="true"
       >
-        <ShotFrame
-          className="h-full w-full"
-          soup
-          corners
-          animateIn
-          glassStyle={{ borderRadius: frameRadius }}
-        >
-          <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
-            <motion.div className="absolute inset-0" style={{ scale: mediaScale }}>
-              <Image
-                src="/brand/fachada-hero.jpg"
-                alt="Fachada e salão do Jota's Bar e Restaurante na Liberdade"
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover object-[center_42%]"
-              />
-            </motion.div>
-
-            <div
-              className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,11,10,0.42)_0%,rgba(12,11,10,0.06)_30%,rgba(12,11,10,0.32)_58%,rgba(12,11,10,0.9)_100%)]"
-              aria-hidden="true"
-            />
-            <div
-              className="absolute inset-0 bg-[radial-gradient(ellipse_65%_50%_at_18%_88%,rgba(12,11,10,0.55),transparent_60%)]"
-              aria-hidden="true"
-            />
-          </div>
-
-          <motion.div
-            style={{ y: copyY, opacity: copyOpacity }}
-            className="absolute inset-x-0 bottom-0 z-30 px-5 pb-8 pt-24 sm:px-8 sm:pb-10 md:px-12 md:pb-14 lg:px-16"
-          >
-            <motion.div
-              className="max-w-3xl"
-              variants={reduce ? undefined : stagger}
-              initial={reduce ? false : "hidden"}
-              animate="show"
-            >
-              <motion.p
-                variants={reduce ? undefined : fadeUp}
-                className="font-display text-[clamp(3.25rem,11vw,7.75rem)] leading-[0.88] tracking-[0.04em] text-cream"
-              >
-                {site.shortName}
-              </motion.p>
-
-              <motion.h1
-                variants={reduce ? undefined : fadeUp}
-                className="mt-5 max-w-xl font-display text-[clamp(1.5rem,3.2vw,2.5rem)] leading-[1.15] text-cream/92"
-              >
-                Boteco da Liberdade,{" "}
-                <span className="text-gold-soft">
-                  {site.tagline.toLowerCase()}
-                </span>
-              </motion.h1>
-
-              <motion.p
-                variants={reduce ? undefined : fadeUp}
-                className="mt-4 max-w-md text-base leading-relaxed text-cream/70 md:text-lg"
-              >
-                Pratos do dia, lanches artesanais e porções para a mesa cheia —
-                no coração da Liberdade, SP.
-              </motion.p>
-
-              <motion.div
-                variants={reduce ? undefined : fadeUp}
-                className="mt-8 flex flex-wrap items-center gap-3"
-              >
-                <motion.a
-                  href="#cardapio"
-                  className="btn-primary"
-                  whileHover={reduce ? undefined : { y: -2 }}
-                  whileTap={reduce ? undefined : { scale: 0.98 }}
-                >
-                  Ver cardápio
-                </motion.a>
-                <motion.a
-                  href={site.whatsappReserve}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-ghost"
-                  whileHover={reduce ? undefined : { y: -2 }}
-                  whileTap={reduce ? undefined : { scale: 0.98 }}
-                >
-                  Reservar mesa
-                </motion.a>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </ShotFrame>
+        <div className="hero-keyart absolute -inset-[12%]">
+          <Image
+            src="/brand/keyart.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[70%_20%]"
+          />
+        </div>
+        <div className="hero-aurora absolute inset-0" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_25%_80%,rgba(8,7,6,0.92),transparent_65%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#080706] via-[#080706]/85 to-transparent" />
+        <div className="grain absolute inset-0" />
       </motion.div>
 
       <motion.div
-        className="pointer-events-none absolute bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 z-20 hidden -translate-x-1/2 md:block"
-        aria-hidden="true"
-        initial={reduce ? false : { opacity: 0 }}
-        animate={reduce ? undefined : { opacity: 1 }}
-        transition={{ delay: 1.3, duration: 0.8, ease: easeOutExpo }}
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="section-pad relative z-10 mx-auto w-full max-w-7xl pb-14 pt-32 md:pb-20 md:pt-40"
       >
-        <motion.span
-          className="block h-9 w-px bg-gradient-to-b from-gold/70 to-transparent"
-          animate={
-            reduce
-              ? undefined
-              : { scaleY: [1, 0.5, 1], opacity: [0.85, 0.3, 0.85] }
+        {/* Generated brand lockup — screen blend drops the black plate */}
+        <motion.div
+          className="relative w-full max-w-[min(92vw,44rem)]"
+          initial={
+            reduce ? false : { opacity: 0, scale: 0.94, filter: "blur(14px)" }
           }
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-          style={{ originY: 0 }}
-        />
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1.4, ease: easeOutExpo }}
+        >
+          <div className="relative aspect-[16/9]">
+            <Image
+              src="/brand/wordmark.jpg"
+              alt={`${site.name} — marca`}
+              fill
+              priority
+              sizes="(max-width: 768px) 92vw, 44rem"
+              className="hero-wordmark object-contain"
+            />
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="mt-2 max-w-2xl md:mt-4"
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5, ease: easeOutExpo }}
+        >
+          <h1 className="font-display text-[clamp(1.5rem,3.4vw,2.6rem)] leading-[1.14] text-cream">
+            Boteco da Liberdade,{" "}
+            <span className="text-gold-soft">
+              {site.tagline.toLowerCase()}
+            </span>
+          </h1>
+          <p className="mt-4 max-w-md text-base leading-relaxed text-cream/70 md:text-lg">
+            Pratos do dia, lanches artesanais e porções para a mesa cheia — no
+            coração da Liberdade, SP.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="mt-8 flex flex-wrap items-center gap-3"
+          initial={reduce ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.72, ease: easeOutExpo }}
+        >
+          <motion.a
+            href="#cardapio"
+            className="btn-primary"
+            whileHover={reduce ? undefined : { y: -2 }}
+            whileTap={reduce ? undefined : { scale: 0.98 }}
+          >
+            Ver cardápio
+          </motion.a>
+          <motion.a
+            href={site.whatsappReserve}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost"
+            whileHover={reduce ? undefined : { y: -2 }}
+            whileTap={reduce ? undefined : { scale: 0.98 }}
+          >
+            Reservar mesa
+          </motion.a>
+        </motion.div>
+
+        <motion.dl
+          className="mt-12 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-line pt-7 md:mt-16 md:grid-cols-4"
+          initial={reduce ? false : { opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.9, ease: easeOutExpo }}
+        >
+          {meta.map((item) => (
+            <div key={item.label}>
+              <dt className="text-[0.65rem] uppercase tracking-[0.28em] text-gold/80">
+                {item.label}
+              </dt>
+              <dd className="mt-2 text-sm leading-snug text-cream/80">
+                {item.value}
+              </dd>
+            </div>
+          ))}
+        </motion.dl>
       </motion.div>
     </section>
   );

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Jota's Bar e Restaurante",
     description:
       "Tamanho dos seus sonhos. Comida boa, bar cheio e Liberdade no endereço. Todos os dias das 6h às 23h.",
-    images: ["/brand/fachada-hero.jpg"],
+    images: ["/brand/wordmark.jpg"],
     locale: "pt_BR",
     type: "website",
   },

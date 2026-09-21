@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useId, useState } from "react";
 import { Reveal } from "@/components/Reveal";
+import { SectionHeading } from "@/components/SectionHeading";
 import { easeOutExpo } from "@/components/motion";
 import {
   beirutes,
@@ -37,19 +38,13 @@ export function Menu() {
     >
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.32em] text-gold">
-            Cardápio
-          </p>
-          <h2
-            id={`${baseId}-heading`}
-            className="mt-4 max-w-2xl font-display text-4xl leading-[1.1] text-cream md:text-5xl"
-          >
-            Do prato do dia ao beirute Jotas Tudo
-          </h2>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/70 md:text-lg">
-            Destaques tipográficos do salão. Preços de sucos e bebidas conforme
-            o cardápio; demais valores no balcão ou delivery.
-          </p>
+          <SectionHeading
+            index="02"
+            eyebrow="Cardápio"
+            titleId={`${baseId}-heading`}
+            title="Do prato do dia ao beirute Jotas Tudo"
+            lead="Destaques tipográficos do salão. Preços de sucos e bebidas conforme o cardápio; demais valores no balcão ou delivery."
+          />
         </Reveal>
 
         <Reveal className="mt-10" delay={80}>

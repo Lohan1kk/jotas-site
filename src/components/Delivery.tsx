@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
+import { SectionHeading } from "@/components/SectionHeading";
 import { site } from "@/lib/content";
 
 export function Delivery() {
@@ -15,19 +16,13 @@ export function Delivery() {
     >
       <Reveal className="mx-auto max-w-7xl">
         <div className="relative overflow-hidden border border-line bg-[linear-gradient(135deg,var(--ink-soft)_0%,var(--ink)_48%,rgba(30,58,47,0.35)_100%)] px-6 py-14 md:px-14 md:py-20">
-          <p className="text-xs uppercase tracking-[0.32em] text-gold">
-            Delivery
-          </p>
-          <h2
-            id="delivery-heading"
-            className="mt-4 max-w-xl font-display text-4xl leading-[1.1] text-cream md:text-5xl"
-          >
-            Pedido no WhatsApp
-          </h2>
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-cream/70 md:text-lg">
-            Mesmo número do salão: {site.phoneDisplay}. Aceitamos{" "}
-            {site.payments.slice(0, 5).join(", ")} e mais — confira no flyer.
-          </p>
+          <SectionHeading
+            index="03"
+            eyebrow="Delivery"
+            titleId="delivery-heading"
+            title="Pedido no WhatsApp"
+            lead={`Mesmo número do salão: ${site.phoneDisplay}. Aceitamos ${site.payments.slice(0, 5).join(", ")} e mais — confira no flyer.`}
+          />
           <div className="mt-9 flex flex-wrap gap-3">
             <motion.a
               href={site.whatsappDelivery}

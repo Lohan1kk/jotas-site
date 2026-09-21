@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { Reveal } from "@/components/Reveal";
+import { SectionHeading } from "@/components/SectionHeading";
 import { site } from "@/lib/content";
 
 export function Reservations() {
@@ -28,19 +29,13 @@ export function Reservations() {
     >
       <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-12">
         <Reveal className="lg:col-span-5">
-          <p className="text-xs uppercase tracking-[0.32em] text-gold">
-            Reservas & contacto
-          </p>
-          <h2
-            id="reservas-heading"
-            className="mt-4 font-display text-4xl leading-tight text-cream md:text-5xl"
-          >
-            Guarde a mesa
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-cream/70">
-            Fale conosco pelo WhatsApp ou telefone. Reserva e delivery no mesmo
-            canal.
-          </p>
+          <SectionHeading
+            index="04"
+            eyebrow="Reservas & contacto"
+            titleId="reservas-heading"
+            title="Guarde a mesa"
+            lead="Fale conosco pelo WhatsApp ou telefone. Reserva e delivery no mesmo canal."
+          />
 
           <dl className="mt-10 space-y-6 text-sm">
             <div>
