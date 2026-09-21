@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# skill runtime artifacts
+.cursor/skills/**/__pycache__/
+.cursor/skills/**/*.pyc
+.cursor/skills/**/.coverage
