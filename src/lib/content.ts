@@ -21,9 +21,10 @@ export const site = {
     "https://www.google.com/maps?q=Av.+da+Liberdade,+9,+Liberdade,+S%C3%A3o+Paulo,+SP,+01503-001&output=embed",
   priceRange: "R$ 40–60",
   reviewsCount: "4.786",
-  /** Closing confirmed by owner: every day until 23:00. Open time not specified. */
+  /** Confirmed: every day 06:00–23:00 */
   hours: {
-    label: "Todos os dias até às 23h",
+    label: "Todos os dias das 6h às 23h",
+    opens: "06:00",
     closes: "23:00",
   },
   payments: [

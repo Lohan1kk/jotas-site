@@ -18,12 +18,12 @@ const body = Outfit({
 export const metadata: Metadata = {
   title: "Jota's Bar e Restaurante | Liberdade, São Paulo",
   description:
-    "Boteco paulista moderno na Liberdade. Pratos do dia, lanches artesanais, beirutes e porções — Av. da Liberdade, 9. Todos os dias até às 23h. Faixa R$ 40–60.",
+    "Boteco paulista moderno na Liberdade. Pratos do dia, lanches artesanais, beirutes e porções — Av. da Liberdade, 9. Todos os dias das 6h às 23h. Faixa R$ 40–60.",
   metadataBase: new URL("https://jotas-site.vercel.app"),
   openGraph: {
     title: "Jota's Bar e Restaurante",
     description:
-      "Tamanho dos seus sonhos. Comida boa, bar cheio e Liberdade no endereço. Todos os dias até às 23h.",
+      "Tamanho dos seus sonhos. Comida boa, bar cheio e Liberdade no endereço. Todos os dias das 6h às 23h.",
     images: ["/brand/fachada.png"],
     locale: "pt_BR",
     type: "website",
@@ -59,6 +59,7 @@ const restaurantJsonLd = {
         "Saturday",
         "Sunday",
       ],
+      opens: site.hours.opens,
       closes: site.hours.closes,
     },
   ],
