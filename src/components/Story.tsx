@@ -11,7 +11,7 @@ import { site } from "@/lib/content";
 const facts = [
   { label: "Faixa", value: site.priceRange },
   { label: "Avaliações", value: `${site.reviewsCount} no Google` },
-  { label: "Horário", value: "6h às 23h" },
+  { label: "Horário", value: site.hours.short },
   { label: "Endereço", value: "Av. da Liberdade, 9" },
 ];
 
