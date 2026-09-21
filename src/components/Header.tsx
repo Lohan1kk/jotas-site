@@ -6,9 +6,9 @@ import { easeOutExpo } from "@/components/motion";
 import { site } from "@/lib/content";
 
 const links = [
-  { href: "#historia", label: "História" },
+  { href: "#casa", label: "A casa" },
   { href: "#cardapio", label: "Cardápio" },
-  { href: "#delivery", label: "Delivery" },
+  { href: "#visita", label: "Visita" },
   { href: "#reservas", label: "Reservas" },
 ];
 
@@ -18,10 +18,9 @@ export function Header() {
   const reduce = useReducedMotion();
   const panelId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -36,37 +35,33 @@ export function Header() {
       }
     };
     document.addEventListener("keydown", onKey);
-    const first = panelRef.current?.querySelector<HTMLElement>("a");
-    first?.focus();
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
   return (
-    <motion.header
-      className="fixed inset-x-0 top-0 z-50 border-b border-line bg-ink/95 backdrop-blur-md"
-      initial={false}
-      animate={{ boxShadow: scrolled ? "0 12px 40px rgba(0,0,0,0.5)" : "none" }}
-      transition={{ duration: 0.35, ease: easeOutExpo }}
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        scrolled
+          ? "border-line bg-ink/95 backdrop-blur-md"
+          : "border-transparent bg-gradient-to-b from-ink/80 to-transparent"
+      }`}
     >
-      <div className="section-pad relative mx-auto flex h-16 max-w-6xl items-center justify-between md:h-20">
+      <div className="section-pad mx-auto flex h-16 max-w-6xl items-center justify-between md:h-[4.5rem]">
         <a href="#topo" className="group flex flex-col leading-none">
-          <span className="font-display text-2xl tracking-[0.08em] text-cream transition group-hover:text-gold md:text-3xl">
+          <span className="font-display text-2xl tracking-[0.1em] text-cream transition duration-300 group-hover:text-gold md:text-[1.75rem]">
             {site.shortName}
           </span>
-          <span className="mt-0.5 text-[0.65rem] uppercase tracking-[0.28em] text-cream/70">
+          <span className="mt-0.5 text-[0.6rem] uppercase tracking-[0.32em] text-muted">
             Bar e Restaurante
           </span>
         </a>
 
-        <nav
-          className="hidden items-center gap-8 lg:flex"
-          aria-label="Principal"
-        >
+        <nav className="hidden items-center gap-9 lg:flex" aria-label="Principal">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="relative text-sm uppercase tracking-[0.16em] text-cream transition hover:text-gold"
+              className="text-[0.7rem] uppercase tracking-[0.22em] text-cream/85 transition duration-300 hover:text-gold"
             >
               {link.label}
             </a>
@@ -75,9 +70,10 @@ export function Header() {
             href={site.whatsappReserve}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary !px-4 !py-2"
+            className="btn-primary !px-4 !py-2.5"
             whileHover={reduce ? undefined : { y: -1 }}
             whileTap={reduce ? undefined : { scale: 0.98 }}
+            transition={{ duration: 0.3 }}
           >
             Reservar
           </motion.a>
@@ -94,13 +90,13 @@ export function Header() {
         >
           <span className="flex flex-col gap-1.5" aria-hidden="true">
             <span
-              className={`block h-px w-6 bg-current transition ${open ? "translate-y-1.5 rotate-45" : ""}`}
+              className={`block h-px w-6 bg-current transition duration-300 ${open ? "translate-y-1.5 rotate-45" : ""}`}
             />
             <span
-              className={`block h-px w-6 bg-current transition ${open ? "opacity-0" : ""}`}
+              className={`block h-px w-6 bg-current transition duration-300 ${open ? "opacity-0" : ""}`}
             />
             <span
-              className={`block h-px w-6 bg-current transition ${open ? "-translate-y-1.5 -rotate-45" : ""}`}
+              className={`block h-px w-6 bg-current transition duration-300 ${open ? "-translate-y-1.5 -rotate-45" : ""}`}
             />
           </span>
         </button>
@@ -110,19 +106,18 @@ export function Header() {
         {open && (
           <motion.div
             id={panelId}
-            ref={panelRef}
-            className="border-t border-line bg-ink/95 px-6 py-6 lg:hidden"
-            initial={reduce ? false : { height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={reduce ? undefined : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: easeOutExpo }}
+            className="border-t border-line bg-ink/98 px-6 py-8 lg:hidden gpu-layer"
+            initial={reduce ? false : { opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduce ? undefined : { opacity: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: easeOutExpo }}
           >
-            <nav className="flex flex-col gap-4" aria-label="Mobile">
+            <nav className="flex flex-col gap-5" aria-label="Mobile">
               {links.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm uppercase tracking-[0.2em] text-cream"
+                  className="text-sm uppercase tracking-[0.22em] text-cream"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
@@ -141,6 +136,6 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

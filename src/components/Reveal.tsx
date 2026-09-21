@@ -1,21 +1,20 @@
 "use client";
 
+import { FadeIn } from "@/components/motion";
 import type { ReactNode } from "react";
 
-/**
- * Layout wrapper — no scroll-triggered motion.
- * Ambient loops live in CSS / Framer animate props instead.
- */
 export function Reveal({
   children,
   className = "",
+  delay = 0,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
 }) {
-  if (className) {
-    return <div className={className}>{children}</div>;
-  }
-  return <>{children}</>;
+  return (
+    <FadeIn className={className} delay={delay / 1000}>
+      {children}
+    </FadeIn>
+  );
 }

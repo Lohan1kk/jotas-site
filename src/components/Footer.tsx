@@ -1,71 +1,77 @@
+"use client";
+
+import { FadeIn } from "@/components/motion";
 import { site } from "@/lib/content";
 
 export function Footer() {
   return (
-    <footer className="section-pad border-t border-line py-14 pb-24 md:pb-14">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="font-display text-4xl tracking-[0.08em] text-cream">
+    <footer className="border-t border-line bg-ink">
+      <div className="section-pad mx-auto grid max-w-6xl gap-12 py-14 md:grid-cols-[1.2fr_1fr_1fr] md:py-16">
+        <FadeIn>
+          <p className="font-display text-3xl tracking-[0.08em] text-cream">
             {site.shortName}
           </p>
-          <p className="mt-2 text-sm uppercase tracking-[0.22em] text-cream/75">
-            Bar e Restaurante · Liberdade
+          <p className="mt-2 text-[0.65rem] uppercase tracking-[0.28em] text-muted">
+            Bar e Restaurante
           </p>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/85">
-            {site.addressShort}
-            <br />
-            <a
-              href={`tel:${site.phoneTel}`}
-              className="transition hover:text-gold"
-            >
-              {site.phoneDisplay}
-            </a>{" "}
-            ·{" "}
-            <a
-              href={site.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition hover:text-gold"
-            >
-              {site.instagramHandle}
-            </a>
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">
+            {site.tagline}. Boteco da Liberdade — comida boa e mesa cheia.
           </p>
-          <p className="mt-3 text-sm text-cream/85">{site.hours.label}</p>
-        </div>
+        </FadeIn>
 
-        <div className="max-w-md">
-          <p className="text-[0.75rem] uppercase tracking-[0.22em] text-gold">
-            Pagamentos
+        <FadeIn delay={0.08}>
+          <p className="text-[0.65rem] uppercase tracking-[0.28em] text-gold">
+            Contato
           </p>
-          <p className="mt-3 text-sm leading-relaxed text-cream/85">
-            {site.payments.join(" · ")}
+          <ul className="mt-4 space-y-2 text-sm text-cream/85">
+            <li>
+              <a
+                href={`tel:${site.phoneTel}`}
+                className="transition duration-300 hover:text-gold"
+              >
+                {site.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition duration-300 hover:text-gold"
+              >
+                {site.instagramHandle}
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition duration-300 hover:text-gold"
+              >
+                {site.addressShort}
+              </a>
+            </li>
+          </ul>
+        </FadeIn>
+
+        <FadeIn delay={0.12}>
+          <p className="text-[0.65rem] uppercase tracking-[0.28em] text-gold">
+            Horário
           </p>
-          <nav
-            className="mt-6 flex flex-wrap gap-4 text-sm uppercase tracking-[0.14em] text-cream/85"
-            aria-label="Rodapé"
-          >
-            <a href="#cardapio" className="hover:text-gold">
-              Cardápio
-            </a>
-            <a href="#delivery" className="hover:text-gold">
-              Delivery
-            </a>
-            <a href="#reservas" className="hover:text-gold">
-              Reservas
-            </a>
-            <a
-              href={site.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-gold"
-            >
-              Maps
-            </a>
-          </nav>
-          <p className="mt-6 text-[0.8125rem] text-cream/75">
-            © {new Date().getFullYear()} {site.name}. Reservas e delivery pelo
-            WhatsApp.
+          <p className="mt-4 text-sm leading-relaxed text-cream/85">
+            {site.hours.label}
           </p>
+          <p className="mt-6 text-xs text-muted">
+            Pagamentos: {site.payments.slice(0, 5).join(", ")}…
+          </p>
+        </FadeIn>
+      </div>
+
+      <div className="border-t border-line">
+        <div className="section-pad mx-auto flex max-w-6xl flex-col gap-2 py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} {site.name}</p>
+          <p>Av. da Liberdade, 9 — São Paulo, SP</p>
         </div>
       </div>
     </footer>

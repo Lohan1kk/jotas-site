@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import { site } from "@/lib/content";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -10,7 +10,7 @@ const display = Cormorant_Garamond({
   weight: ["500", "600", "700"],
 });
 
-const body = Outfit({
+const body = Plus_Jakarta_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],

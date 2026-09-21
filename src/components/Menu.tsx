@@ -1,15 +1,12 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useId, useState } from "react";
-import { Reveal } from "@/components/Reveal";
-import { Section } from "@/components/Section";
-import { SectionHeading } from "@/components/SectionHeading";
-import { easeOutExpo } from "@/components/motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { FadeIn, easeOutExpo } from "@/components/motion";
+import { MediaImage } from "@/components/MediaImage";
 import {
   beirutes,
   bebidas,
-  comerciais,
   lanches,
   porcoes,
   pratosDoDia,
@@ -26,29 +23,40 @@ const tabs = [
 
 type TabId = (typeof tabs)[number]["id"];
 
+/** We Recommend — list left, photo right. */
 export function Menu() {
-  const [tab, setTab] = useState<TabId>("dia");
+  const [tab, setTab] = useState<TabId>("lanches");
   const baseId = useId();
   const reduce = useReducedMotion();
 
   return (
-    <Section id="cardapio" tone="raised" labelledBy={`${baseId}-heading`}>
-      <div>
-        <Reveal>
-          <SectionHeading
-            index="02"
-            eyebrow="Cardápio"
-            titleId={`${baseId}-heading`}
-            title="Do prato do dia ao beirute Jotas Tudo"
-            lead="Destaques tipográficos do salão. Preços de sucos e bebidas conforme o cardápio; demais valores no balcão ou delivery."
-          />
-        </Reveal>
+    <section
+      id="cardapio"
+      className="section-pad section-y border-t border-line bg-ink-soft"
+      aria-labelledby={`${baseId}-heading`}
+    >
+      <div className="mx-auto max-w-6xl">
+        <FadeIn>
+          <p className="text-[0.7rem] uppercase tracking-[0.35em] text-gold">
+            We recommend
+          </p>
+          <h2
+            id={`${baseId}-heading`}
+            className="mt-4 max-w-2xl font-display text-4xl leading-tight text-cream md:text-5xl"
+          >
+            Destaques da casa
+          </h2>
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted md:text-base">
+            Preços de sucos e bebidas conforme o cardápio; demais valores no
+            balcão ou delivery.
+          </p>
+        </FadeIn>
 
-        <Reveal className="mt-10" delay={80}>
+        <FadeIn delay={0.08} className="mt-10">
           <div
             role="tablist"
             aria-label="Secções do cardápio"
-            className="-mx-1 flex gap-2 overflow-x-auto border-b border-line px-1 pb-1"
+            className="-mx-1 flex gap-1 overflow-x-auto border-b border-line pb-0"
           >
             {tabs.map((item) => {
               const selected = tab === item.id;
@@ -62,186 +70,167 @@ export function Menu() {
                   aria-controls={`${baseId}-panel-${item.id}`}
                   tabIndex={selected ? 0 : -1}
                   onClick={() => setTab(item.id)}
-                  onKeyDown={(e) => {
-                    const idx = tabs.findIndex((t) => t.id === tab);
-                    if (e.key === "ArrowRight") {
-                      e.preventDefault();
-                      setTab(tabs[(idx + 1) % tabs.length].id);
-                    }
-                    if (e.key === "ArrowLeft") {
-                      e.preventDefault();
-                      setTab(tabs[(idx - 1 + tabs.length) % tabs.length].id);
-                    }
-                  }}
-                  className={`relative shrink-0 px-4 py-3 text-sm uppercase tracking-[0.14em] transition ${
-                    selected ? "text-ink" : "text-cream hover:text-gold"
+                  className={`relative shrink-0 px-4 py-3.5 text-[0.7rem] uppercase tracking-[0.16em] transition duration-300 ${
+                    selected ? "text-gold" : "text-muted hover:text-cream"
                   }`}
                 >
+                  {item.label}
                   {selected && (
                     <motion.span
-                      layoutId={reduce ? undefined : "menu-tab"}
-                      className="tab-active-glow absolute inset-0 bg-gold"
-                      transition={{ duration: 0.35, ease: easeOutExpo }}
+                      layoutId={reduce ? undefined : "menu-underline"}
+                      className="absolute inset-x-4 bottom-0 h-px bg-gold"
+                      transition={{ duration: 0.3, ease: easeOutExpo }}
                       aria-hidden="true"
                     />
                   )}
-                  <span className="relative z-10">{item.label}</span>
                 </button>
               );
             })}
           </div>
-        </Reveal>
+        </FadeIn>
 
-        <Reveal className="mt-10" delay={100}>
-          <div className="panel px-5 py-8 sm:px-8 md:px-10 md:py-10">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={tab}
-                role="tabpanel"
-                id={`${baseId}-panel-${tab}`}
-                aria-labelledby={`${baseId}-tab-${tab}`}
-                initial={reduce ? false : { opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduce ? undefined : { opacity: 0, y: -8 }}
-                transition={{ duration: 0.35, ease: easeOutExpo }}
-              >
-            {tab === "dia" && (
-              <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
-                <div className="space-y-8">
-                  {pratosDoDia.map((block) => (
-                    <div key={block.day}>
-                      <h3 className="font-display text-2xl text-gold-soft">
-                        {block.day}
-                      </h3>
-                      <ul className="mt-3 space-y-1.5 border-l border-line pl-4 text-cream">
-                        {block.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <h3 className="font-display text-2xl text-gold-soft">
-                    Comerciais
-                  </h3>
-                  <p className="mt-2 text-[0.9375rem] text-cream/85">
-                    Acompanha arroz, feijão, fritas ou salada.
-                  </p>
-                  <ul className="mt-5 space-y-3">
-                    {comerciais.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-baseline justify-between gap-4 border-b border-line pb-2 text-cream"
-                      >
-                        <span className="font-display text-xl">{item}</span>
-                        <span
-                          className="h-px flex-1 bg-line"
-                          aria-hidden="true"
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            )}
+        <div className="mt-10 grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-16">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={tab}
+              role="tabpanel"
+              id={`${baseId}-panel-${tab}`}
+              aria-labelledby={`${baseId}-tab-${tab}`}
+              className="gpu-layer min-h-[20rem]"
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduce ? undefined : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.35, ease: easeOutExpo }}
+            >
+              {tab === "dia" && <PratosList />}
+              {tab === "lanches" && <NamedList items={lanches} />}
+              {tab === "beirutes" && <NamedList items={beirutes} />}
+              {tab === "porcoes" && <SimpleList items={porcoes} />}
+              {tab === "bebidas" && <BebidasList />}
+            </motion.div>
+          </AnimatePresence>
 
-            {tab === "lanches" && (
-              <ul className="mx-auto max-w-2xl space-y-6">
-                {lanches.map((item) => (
-                  <li key={item.name} className="border-b border-line pb-5">
-                    <h3 className="font-display text-2xl text-cream md:text-3xl">
-                      {item.name}
-                    </h3>
-                    <p className="mt-1 text-[0.9375rem] text-cream/85">{item.detail}</p>
-                  </li>
-                ))}
-                <p className="text-[0.9375rem] text-cream/85">
-                  Lanches artesanais no pão brioche.
-                </p>
-              </ul>
-            )}
-
-            {tab === "beirutes" && (
-              <ul className="mx-auto grid max-w-3xl gap-5 sm:grid-cols-2">
-                {beirutes.map((item) => (
-                  <li
-                    key={item.name}
-                    className="border-b border-line pb-4 sm:border-b-0 sm:border-l sm:border-line sm:pb-0 sm:pl-5"
-                  >
-                    <h3 className="font-display text-2xl text-cream">
-                      {item.name}
-                    </h3>
-                    <p className="mt-1 text-[0.9375rem] text-cream/85">{item.detail}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            {tab === "porcoes" && (
-              <ul className="mx-auto grid max-w-3xl gap-x-10 gap-y-1 sm:grid-cols-2">
-                {porcoes.map((item) => (
-                  <li
-                    key={item}
-                    className="border-b border-line py-3 font-display text-xl text-cream"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            {tab === "bebidas" && (
-              <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-                <div>
-                  <h3 className="font-display text-2xl text-gold-soft">
-                    Sucos naturais
-                  </h3>
-                  <ul className="mt-5 space-y-2">
-                    {sucos.bases.map((item) => (
-                      <li
-                        key={item.name}
-                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream"
-                      >
-                        <span>{item.name}</span>
-                        <span className="tabular-nums text-gold">
-                          {item.price}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-4 text-sm leading-relaxed text-cream/85">
-                    Sabores: {sucos.flavors}.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-display text-2xl text-gold-soft">
-                    Bebidas diversas
-                  </h3>
-                  <ul className="mt-5 space-y-2">
-                    {bebidas.map((item) => (
-                      <li
-                        key={item.name}
-                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream"
-                      >
-                        <span>{item.name}</span>
-                        <span className="tabular-nums text-gold">
-                          {item.price}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-4 text-[0.9375rem] text-cream/85">
-                    Refrigerantes e outras opções no balcão.
-                  </p>
-                </div>
-              </div>
-            )}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </Reveal>
+          <FadeIn delay={0.12} className="relative hidden lg:block">
+            <MediaImage
+              src="/brand/fachada-hero.jpg"
+              alt="Ambiente do Jota's — salão e bar"
+              width={900}
+              height={1100}
+              sizes="(max-width: 1024px) 0px, 45vw"
+              quality={80}
+              className="h-full w-full object-cover"
+              frameClassName="aspect-[4/5] w-full"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
+            <p className="absolute bottom-6 left-6 right-6 font-display text-2xl text-cream">
+              Mesa cheia na Liberdade
+            </p>
+          </FadeIn>
+        </div>
       </div>
-    </Section>
+    </section>
+  );
+}
+
+function NamedList({
+  items,
+}: {
+  items: readonly { name: string; detail: string }[];
+}) {
+  return (
+    <ul className="divide-y divide-line">
+      {items.map((item) => (
+        <li
+          key={item.name}
+          className="flex items-start justify-between gap-6 py-5"
+        >
+          <div>
+            <p className="font-display text-xl text-cream md:text-2xl">
+              {item.name}
+            </p>
+            <p className="mt-1 text-sm text-muted">{item.detail}</p>
+          </div>
+          <span className="shrink-0 pt-2 text-[0.65rem] uppercase tracking-[0.2em] text-gold/80">
+            Balcão
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function SimpleList({ items }: { items: readonly string[] }) {
+  return (
+    <ul className="grid gap-x-8 gap-y-0 sm:grid-cols-2">
+      {items.map((name) => (
+        <li
+          key={name}
+          className="border-b border-line py-4 font-display text-lg text-cream"
+        >
+          {name}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function PratosList() {
+  return (
+    <ul className="space-y-8">
+      {pratosDoDia.map((day) => (
+        <li key={day.day}>
+          <p className="text-[0.7rem] uppercase tracking-[0.28em] text-gold">
+            {day.day}
+          </p>
+          <ul className="mt-3 space-y-2">
+            {day.items.map((item) => (
+              <li key={item} className="font-display text-lg text-cream">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function BebidasList() {
+  return (
+    <div className="space-y-10">
+      <div>
+        <p className="text-[0.7rem] uppercase tracking-[0.28em] text-gold">
+          Sucos
+        </p>
+        <ul className="mt-4 divide-y divide-line">
+          {sucos.bases.map((item) => (
+            <li
+              key={item.name}
+              className="flex items-baseline justify-between gap-4 py-3"
+            >
+              <span className="text-cream">{item.name}</span>
+              <span className="font-display text-lg text-gold">{item.price}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-xs leading-relaxed text-muted">{sucos.flavors}</p>
+      </div>
+      <div>
+        <p className="text-[0.7rem] uppercase tracking-[0.28em] text-gold">
+          Outras bebidas
+        </p>
+        <ul className="mt-4 divide-y divide-line">
+          {bebidas.map((item) => (
+            <li
+              key={item.name}
+              className="flex items-baseline justify-between gap-4 py-3"
+            >
+              <span className="text-cream">{item.name}</span>
+              <span className="font-display text-lg text-gold">{item.price}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }
