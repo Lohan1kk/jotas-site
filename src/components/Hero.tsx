@@ -5,7 +5,10 @@ import { MediaImage } from "@/components/MediaImage";
 import { easeOutExpo } from "@/components/motion";
 import { site } from "@/lib/content";
 
-/** Hero centrado embaixo — fachada bem visível, texto só com plate local. */
+/**
+ * Hero: fachada enquadrada pelo topo para o letreiro JOTA'S
+ * ficar visível no viewport (object-position top).
+ */
 export function Hero() {
   const reduce = useReducedMotion();
 
@@ -16,22 +19,24 @@ export function Hero() {
       aria-label="Apresentação"
     >
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className={`absolute inset-0 ${reduce ? "" : "hero-ken"} gpu-layer`}>
+        <div
+          className={`absolute inset-0 ${reduce ? "" : "hero-ken"} gpu-layer`}
+        >
           <MediaImage
-            src="/brand/fachada-hero.jpg"
-            alt="Fachada do Jota's Bar e Restaurante na Liberdade"
+            src="/brand/fachada.png"
+            alt="Fachada do Jota's Bar e Restaurante — Av. da Liberdade, 9"
             fill
             priority
             sizes="100vw"
             quality={85}
-            className="object-cover object-[center_42%]"
+            /* Portrait fachada: pin TOP — letreiro JOTA'S sits in the top band */
+            className="object-cover object-top"
             frameClassName="absolute inset-0 h-full w-full"
           />
         </div>
-        {/* Light top for nav only */}
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#080808]/70 to-transparent" />
-        {/* Soft bottom plate — only under the copy, facade stays open above */}
-        <div className="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-[#080808] via-[#080808]/85 to-transparent md:h-[34%]" />
+        {/* Light overlays only — keep facade + physical sign readable */}
+        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#080808]/40 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#080808] via-[#080808]/75 to-transparent md:h-[26%]" />
       </div>
 
       <div className="section-pad relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-end pb-16 pt-28 text-center md:pb-24 md:pt-36">
