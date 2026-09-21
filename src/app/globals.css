@@ -134,6 +134,11 @@ body {
   top: 1rem;
 }
 
+/* Nav sits over the hero's warm light, so lift it off the background */
+.nav-link {
+  text-shadow: 0 1px 12px rgba(8, 7, 6, 0.85);
+}
+
 .hero-keyart {
   filter: blur(58px) saturate(110%);
   opacity: 0.5;

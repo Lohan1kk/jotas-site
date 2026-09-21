@@ -81,7 +81,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="relative text-sm uppercase tracking-[0.18em] text-cream/90 transition hover:text-gold"
+              className="nav-link relative text-sm uppercase tracking-[0.18em] text-cream/90 transition hover:text-gold"
             >
               {link.label}
             </a>
