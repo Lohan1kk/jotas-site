@@ -17,8 +17,9 @@ export function ReservationBar() {
 
   return (
     <section
-      className="section-pad relative z-20 -mt-6 md:-mt-8"
+      className="section-pad relative z-20 -mt-8 md:-mt-10"
       aria-label="Reserva rápida"
+      id="reservar"
     >
       <FadeIn className="mx-auto max-w-5xl border border-white/10 bg-[#141414]/95 p-4 shadow-[0_24px_60px_rgba(0,0,0,0.45)] backdrop-blur-md md:p-5">
         <form

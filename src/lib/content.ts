@@ -57,8 +57,7 @@ export const site = {
     heroEyebrow: "Liberdade · São Paulo",
     heroTitle: "JOTA'S",
     heroLead: "Bar e restaurante no coração da Liberdade",
-    heroBody:
-      "Ambiente aquecido, bar iluminado e mesa para os amigos — pratos do dia, lanches artesanais e porções.",
+    heroBody: "",
     heroCtaPrimary: "Reservar mesa",
     heroCtaSecondary: "Ver cardápio",
     hoursEyebrow: "Horários",
@@ -69,7 +68,7 @@ export const site = {
       "Cerveja gelada, caipirinha e porções para acompanhar — o clima do Jota's na Liberdade.",
     happyNote: "Consulte promoções do dia no balcão ou pelo WhatsApp.",
     bannerEyebrow: "A casa",
-    bannerTitle: "Luz baixa, madeira e conversa boa",
+    bannerTitle: "Madeira, bar e conversa boa",
     bannerBody: "Um boteco paulista moderno — acolhedor, social e com comida de verdade.",
     menuEyebrow: "Recomendações",
     menuTitle: "O que pedimos na casa",

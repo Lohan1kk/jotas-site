@@ -125,7 +125,7 @@ export function Menu() {
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080808]/70 to-transparent" />
             <p className="absolute bottom-6 left-6 right-6 font-display text-2xl tracking-wide text-neutral-100">
-              Bar iluminado · Liberdade
+              Liberdade · São Paulo
             </p>
           </FadeIn>
         </div>

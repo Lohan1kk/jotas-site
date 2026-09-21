@@ -23,7 +23,7 @@ export function Footer() {
             Bar e Restaurante
           </p>
           <p className="mt-5 max-w-xs text-sm font-light leading-relaxed text-neutral-400">
-            {site.tagline}. Luz baixa, madeira e o ritmo da Liberdade.
+            {site.tagline}. Boteco da Liberdade — o ritmo da casa.
           </p>
         </FadeIn>
 
