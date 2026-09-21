@@ -1,11 +1,12 @@
-import { Delivery } from "@/components/Delivery";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { InfoHours } from "@/components/InfoHours";
 import { Menu } from "@/components/Menu";
 import { Reservations } from "@/components/Reservations";
 import { StickyWhatsApp } from "@/components/StickyWhatsApp";
-import { Story } from "@/components/Story";
+import { Visit } from "@/components/Visit";
+import { VisualBanner } from "@/components/VisualBanner";
 import { WelcomeStrip } from "@/components/WelcomeStrip";
 
 export default function Home() {
@@ -18,9 +19,10 @@ export default function Home() {
       <main id="conteudo" className="flex-1">
         <Hero />
         <WelcomeStrip />
-        <Story />
+        <InfoHours />
+        <VisualBanner />
         <Menu />
-        <Delivery />
+        <Visit />
         <Reservations />
       </main>
       <Footer />

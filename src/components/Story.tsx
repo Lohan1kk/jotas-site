@@ -1,60 +1,78 @@
+"use client";
+
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
+import { Section } from "@/components/Section";
+import { SectionHeading } from "@/components/SectionHeading";
+import { ShotFrame } from "@/components/ShotFrame";
 import { site } from "@/lib/content";
 
+const facts = [
+  { label: "Faixa", value: site.priceRange },
+  { label: "Avaliações", value: `${site.reviewsCount} no Google` },
+  { label: "Horário", value: site.hours.short },
+  { label: "Endereço", value: "Av. da Liberdade, 9" },
+];
+
 export function Story() {
+  const reduce = useReducedMotion();
+
   return (
-    <section
-      id="historia"
-      className="section-pad relative py-24 md:py-32"
-      aria-labelledby="historia-heading"
-    >
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:gap-16">
-        <Reveal className="lg:col-span-5">
-          <p className="text-xs uppercase tracking-[0.32em] text-gold">
-            A casa
-          </p>
-          <h2
-            id="historia-heading"
-            className="mt-4 font-display text-4xl leading-tight text-cream md:text-5xl"
-          >
-            Madeira, bar cheio e mesa para os amigos
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed text-cream/70">
-            O Jota&apos;s é boteco paulista moderno: acolhedor, social e com
-            comida de verdade. Mezanino, balcão iluminado e o ritmo da Liberdade
-            logo na porta — Av. da Liberdade, 9.
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-muted">
-            Faixa {site.priceRange} · cerca de {site.reviewsCount} avaliações no
-            Google · salão e delivery.
-          </p>
-          <a
+    <Section id="historia" labelledBy="historia-heading">
+      <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <Reveal>
+          <SectionHeading
+            index="01"
+            eyebrow="A casa"
+            titleId="historia-heading"
+            title="Madeira, bar cheio e mesa para os amigos"
+            lead="O Jota's é boteco paulista moderno: acolhedor, social e com comida de verdade. Mezanino, balcão e o ritmo da Liberdade logo na porta."
+          />
+
+          <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-7 border-t border-line pt-8">
+            {facts.map((fact) => (
+              <div key={fact.label}>
+                <dt className="text-[0.8125rem] uppercase tracking-[0.2em] text-gold">
+                  {fact.label}
+                </dt>
+                <dd className="mt-2 text-[0.9375rem] text-cream">
+                  {fact.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <motion.a
             href={site.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-ghost mt-8"
+            className="btn-ghost mt-10"
+            whileHover={reduce ? undefined : { y: -2 }}
+            whileTap={reduce ? undefined : { scale: 0.98 }}
           >
             {site.instagramHandle}
-          </a>
+          </motion.a>
         </Reveal>
 
-        <Reveal className="relative lg:col-span-7" delay={120}>
-          <div className="relative aspect-[4/5] overflow-hidden sm:aspect-[16/11]">
-            <Image
-              src="/brand/jogo-americano.png"
-              alt="Jogo americano do Jota's com identidade chalkboard e bem-vindo"
-              fill
-              sizes="(max-width: 1024px) 100vw, 55vw"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/55 to-transparent" />
-          </div>
-          <p className="mt-4 font-display text-2xl text-gold-soft md:text-3xl">
+        <Reveal delay={120}>
+          <ShotFrame className="w-full" animateIn={false}>
+            <div className="relative aspect-[4/3]">
+              <Image
+                src="/brand/fachada-hero.jpg"
+                alt="Fachada e salão do Jota's Bar e Restaurante na Liberdade"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-[center_45%]"
+              />
+            </div>
+          </ShotFrame>
+
+          <p className="mt-6 font-display text-2xl text-gold-soft md:text-3xl">
             “{site.tagline}”
           </p>
         </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }
