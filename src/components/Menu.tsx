@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useId, useState } from "react";
 import { Reveal } from "@/components/Reveal";
+import { Section } from "@/components/Section";
 import { SectionHeading } from "@/components/SectionHeading";
 import { easeOutExpo } from "@/components/motion";
 import {
@@ -31,12 +32,8 @@ export function Menu() {
   const reduce = useReducedMotion();
 
   return (
-    <section
-      id="cardapio"
-      className="section-pad border-t border-line py-24 md:py-32"
-      aria-labelledby={`${baseId}-heading`}
-    >
-      <div className="mx-auto max-w-7xl">
+    <Section id="cardapio" labelledBy={`${baseId}-heading`}>
+      <div>
         <Reveal>
           <SectionHeading
             index="02"
@@ -77,7 +74,7 @@ export function Menu() {
                     }
                   }}
                   className={`relative shrink-0 px-4 py-3 text-sm uppercase tracking-[0.14em] transition ${
-                    selected ? "text-ink" : "text-cream/65 hover:text-gold"
+                    selected ? "text-ink" : "text-cream/80 hover:text-gold"
                   }`}
                 >
                   {selected && (
@@ -96,12 +93,7 @@ export function Menu() {
         </Reveal>
 
         <Reveal className="mt-10" delay={100}>
-          <div className="relative border border-line bg-ink-soft/40 px-5 py-8 sm:px-8 md:px-10 md:py-10">
-            <div
-              className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"
-              aria-hidden="true"
-            />
-
+          <div className="panel px-5 py-8 sm:px-8 md:px-10 md:py-10">
             <AnimatePresence mode="wait">
               <motion.div
                 key={tab}
@@ -121,7 +113,7 @@ export function Menu() {
                       <h3 className="font-display text-2xl text-gold-soft">
                         {block.day}
                       </h3>
-                      <ul className="mt-3 space-y-1.5 border-l border-line pl-4 text-cream/80">
+                      <ul className="mt-3 space-y-1.5 border-l border-line pl-4 text-cream/90">
                         {block.items.map((item) => (
                           <li key={item}>{item}</li>
                         ))}
@@ -133,14 +125,14 @@ export function Menu() {
                   <h3 className="font-display text-2xl text-gold-soft">
                     Comerciais
                   </h3>
-                  <p className="mt-2 text-sm text-muted">
+                  <p className="mt-2 text-[0.9375rem] text-muted">
                     Acompanha arroz, feijão, fritas ou salada.
                   </p>
                   <ul className="mt-5 space-y-3">
                     {comerciais.map((item) => (
                       <li
                         key={item}
-                        className="flex items-baseline justify-between gap-4 border-b border-line pb-2 text-cream/85"
+                        className="flex items-baseline justify-between gap-4 border-b border-line pb-2 text-cream/90"
                       >
                         <span className="font-display text-xl">{item}</span>
                         <span
@@ -161,10 +153,10 @@ export function Menu() {
                     <h3 className="font-display text-2xl text-cream md:text-3xl">
                       {item.name}
                     </h3>
-                    <p className="mt-1 text-sm text-muted">{item.detail}</p>
+                    <p className="mt-1 text-[0.9375rem] text-muted">{item.detail}</p>
                   </li>
                 ))}
-                <p className="text-sm text-muted">
+                <p className="text-[0.9375rem] text-muted">
                   Lanches artesanais no pão brioche.
                 </p>
               </ul>
@@ -180,7 +172,7 @@ export function Menu() {
                     <h3 className="font-display text-2xl text-cream">
                       {item.name}
                     </h3>
-                    <p className="mt-1 text-sm text-muted">{item.detail}</p>
+                    <p className="mt-1 text-[0.9375rem] text-muted">{item.detail}</p>
                   </li>
                 ))}
               </ul>
@@ -209,7 +201,7 @@ export function Menu() {
                     {sucos.bases.map((item) => (
                       <li
                         key={item.name}
-                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream/85"
+                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream/90"
                       >
                         <span>{item.name}</span>
                         <span className="tabular-nums text-gold">
@@ -230,7 +222,7 @@ export function Menu() {
                     {bebidas.map((item) => (
                       <li
                         key={item.name}
-                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream/85"
+                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream/90"
                       >
                         <span>{item.name}</span>
                         <span className="tabular-nums text-gold">
@@ -239,7 +231,7 @@ export function Menu() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-4 text-sm text-muted">
+                  <p className="mt-4 text-[0.9375rem] text-muted">
                     Refrigerantes e outras opções no balcão.
                   </p>
                 </div>
@@ -250,6 +242,6 @@ export function Menu() {
           </div>
         </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -10,8 +10,8 @@
   --amber: #c67a0a;
   --wood: #5c3f28;
   --seat: #1a3329;
-  --muted: #958b7f;
-  --line: rgba(242, 235, 224, 0.1);
+  --muted: #b6ab9c;
+  --line: rgba(242, 235, 224, 0.14);
   --glow: rgba(212, 160, 23, 0.12);
   --background: var(--ink);
   --foreground: var(--cream);
@@ -73,6 +73,18 @@ body {
   padding-inline: clamp(1.25rem, 4vw, 3.5rem);
 }
 
+/* One rhythm for every section */
+.section-y {
+  padding-block: clamp(4.5rem, 9vw, 8.5rem);
+}
+
+/* One surface for every panel, card, form and map */
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: rgba(20, 18, 16, 0.6);
+}
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -132,11 +144,6 @@ body {
 
 .skip-link:focus {
   top: 1rem;
-}
-
-/* Nav sits over the hero's warm light, so lift it off the background */
-.nav-link {
-  text-shadow: 0 1px 12px rgba(8, 7, 6, 0.85);
 }
 
 .hero-keyart {

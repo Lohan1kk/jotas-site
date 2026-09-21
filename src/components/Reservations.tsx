@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { Reveal } from "@/components/Reveal";
+import { Section } from "@/components/Section";
 import { SectionHeading } from "@/components/SectionHeading";
 import { site } from "@/lib/content";
 
@@ -22,12 +23,8 @@ export function Reservations() {
   }
 
   return (
-    <section
-      id="reservas"
-      className="section-pad border-t border-line py-24 md:py-32"
-      aria-labelledby="reservas-heading"
-    >
-      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-12">
+    <Section id="reservas" tone="raised" labelledBy="reservas-heading">
+      <div className="grid gap-14 lg:grid-cols-12">
         <Reveal className="lg:col-span-5">
           <SectionHeading
             index="04"
@@ -37,14 +34,14 @@ export function Reservations() {
             lead="Fale conosco pelo WhatsApp ou telefone. Reserva e delivery no mesmo canal."
           />
 
-          <dl className="mt-10 space-y-6 text-sm">
+          <dl className="mt-10 space-y-6 text-[0.9375rem]">
             <div>
-              <dt className="uppercase tracking-[0.2em] text-muted">Horário</dt>
-              <dd className="mt-2 text-cream/90">{site.hours.label}</dd>
+              <dt className="text-[0.75rem] uppercase tracking-[0.2em] text-gold">Horário</dt>
+              <dd className="mt-2 text-cream">{site.hours.label}</dd>
             </div>
             <div>
-              <dt className="uppercase tracking-[0.2em] text-muted">Morada</dt>
-              <dd className="mt-2 text-cream/90">
+              <dt className="text-[0.75rem] uppercase tracking-[0.2em] text-gold">Morada</dt>
+              <dd className="mt-2 text-cream">
                 <a
                   href={site.mapsUrl}
                   target="_blank"
@@ -56,7 +53,7 @@ export function Reservations() {
               </dd>
             </div>
             <div>
-              <dt className="uppercase tracking-[0.2em] text-muted">Telefone</dt>
+              <dt className="text-[0.75rem] uppercase tracking-[0.2em] text-gold">Telefone</dt>
               <dd className="mt-2">
                 <a
                   href={`tel:${site.phoneTel}`}
@@ -67,7 +64,7 @@ export function Reservations() {
               </dd>
             </div>
             <div>
-              <dt className="uppercase tracking-[0.2em] text-muted">
+              <dt className="text-[0.75rem] uppercase tracking-[0.2em] text-gold">
                 Instagram
               </dt>
               <dd className="mt-2">
@@ -75,7 +72,7 @@ export function Reservations() {
                   href={site.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-cream/90 transition hover:text-gold"
+                  className="text-cream transition hover:text-gold"
                 >
                   {site.instagramHandle}
                 </a>
@@ -106,12 +103,12 @@ export function Reservations() {
         <Reveal className="lg:col-span-7" delay={100}>
           <form
             onSubmit={onSubmit}
-            className="border border-line bg-ink-soft/60 p-6 backdrop-blur-sm md:p-8"
+            className="panel p-6 md:p-8"
             aria-label="Pedido de reserva"
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block sm:col-span-2">
-                <span className="text-xs uppercase tracking-[0.18em] text-muted">
+                <span className="text-[0.75rem] uppercase tracking-[0.18em] text-gold">
                   Nome
                 </span>
                 <input
@@ -123,7 +120,7 @@ export function Reservations() {
                 />
               </label>
               <label className="block">
-                <span className="text-xs uppercase tracking-[0.18em] text-muted">
+                <span className="text-[0.75rem] uppercase tracking-[0.18em] text-gold">
                   Pessoas
                 </span>
                 <input
@@ -137,7 +134,7 @@ export function Reservations() {
                 />
               </label>
               <label className="block">
-                <span className="text-xs uppercase tracking-[0.18em] text-muted">
+                <span className="text-[0.75rem] uppercase tracking-[0.18em] text-gold">
                   Quando
                 </span>
                 <input
@@ -158,7 +155,7 @@ export function Reservations() {
             )}
           </form>
 
-          <div className="relative mt-8 overflow-hidden border border-line">
+          <div className="panel relative mt-8 overflow-hidden">
             <iframe
               title="Mapa — Jota's Bar e Restaurante na Av. da Liberdade, 9"
               src={site.mapsEmbed}
@@ -170,13 +167,13 @@ export function Reservations() {
               href={site.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute bottom-3 right-3 border border-line bg-ink/90 px-3 py-2 text-[0.65rem] uppercase tracking-[0.16em] text-cream backdrop-blur-sm transition hover:border-gold hover:text-gold"
+              className="absolute bottom-3 right-3 border border-line bg-ink/90 px-3 py-2 text-[0.75rem] uppercase tracking-[0.16em] text-cream backdrop-blur-sm transition hover:border-gold hover:text-gold"
             >
               Ampliar mapa
             </a>
           </div>
         </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }

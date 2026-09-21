@@ -43,27 +43,12 @@ export function Header() {
 
   return (
     <motion.header
-      className="fixed inset-x-0 top-0 z-50"
+      className="fixed inset-x-0 top-0 z-50 border-b border-line bg-ink/95 backdrop-blur-md"
       initial={false}
-      animate={{
-        backgroundColor: scrolled
-          ? "rgba(12, 11, 10, 0.88)"
-          : "rgba(12, 11, 10, 0)",
-        borderBottomColor: scrolled
-          ? "rgba(244, 239, 230, 0.12)"
-          : "rgba(244, 239, 230, 0)",
-        backdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
-      }}
+      animate={{ boxShadow: scrolled ? "0 12px 40px rgba(0,0,0,0.5)" : "none" }}
       transition={{ duration: 0.35, ease: easeOutExpo }}
-      style={{ borderBottomWidth: 1, borderBottomStyle: "solid" }}
     >
-      {/* Scrim keeps nav legible over bright hero light */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink/80 to-transparent"
-        aria-hidden="true"
-      />
-
-      <div className="section-pad relative mx-auto flex h-16 max-w-7xl items-center justify-between md:h-20">
+      <div className="section-pad relative mx-auto flex h-16 max-w-6xl items-center justify-between md:h-20">
         <a href="#topo" className="group flex flex-col leading-none">
           <span className="font-display text-2xl tracking-[0.08em] text-cream transition group-hover:text-gold md:text-3xl">
             {site.shortName}
@@ -81,7 +66,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="nav-link relative text-sm uppercase tracking-[0.18em] text-cream/90 transition hover:text-gold"
+              className="relative text-sm uppercase tracking-[0.16em] text-cream transition hover:text-gold"
             >
               {link.label}
             </a>

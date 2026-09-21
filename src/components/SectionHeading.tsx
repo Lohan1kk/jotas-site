@@ -28,7 +28,7 @@ export function SectionHeading({
         <span className="font-display text-sm text-gold/70 tabular-nums">
           {index}
         </span>
-        <span className="text-[0.7rem] uppercase tracking-[0.34em] text-gold">
+        <span className="text-[0.75rem] uppercase tracking-[0.3em] text-gold">
           {eyebrow}
         </span>
         <motion.span
@@ -50,7 +50,7 @@ export function SectionHeading({
       </h2>
 
       {lead && (
-        <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/65 md:text-lg">
+        <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/80 md:text-lg">
           {lead}
         </p>
       )}

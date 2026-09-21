@@ -3,7 +3,7 @@ import { site } from "@/lib/content";
 export function Footer() {
   return (
     <footer className="section-pad border-t border-line py-14 pb-24 md:pb-14">
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 md:flex-row md:items-end md:justify-between">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="font-display text-4xl tracking-[0.08em] text-cream">
             {site.shortName}
@@ -11,7 +11,7 @@ export function Footer() {
           <p className="mt-2 text-sm uppercase tracking-[0.22em] text-muted">
             Bar e Restaurante · Liberdade
           </p>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/65">
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/85">
             {site.addressShort}
             <br />
             <a
@@ -30,18 +30,18 @@ export function Footer() {
               {site.instagramHandle}
             </a>
           </p>
-          <p className="mt-3 text-sm text-cream/70">{site.hours.label}</p>
+          <p className="mt-3 text-sm text-cream/85">{site.hours.label}</p>
         </div>
 
         <div className="max-w-md">
-          <p className="text-xs uppercase tracking-[0.22em] text-muted">
+          <p className="text-[0.75rem] uppercase tracking-[0.22em] text-gold">
             Pagamentos
           </p>
-          <p className="mt-3 text-sm leading-relaxed text-cream/70">
+          <p className="mt-3 text-sm leading-relaxed text-cream/85">
             {site.payments.join(" · ")}
           </p>
           <nav
-            className="mt-6 flex flex-wrap gap-4 text-sm uppercase tracking-[0.14em] text-cream/70"
+            className="mt-6 flex flex-wrap gap-4 text-sm uppercase tracking-[0.14em] text-cream/85"
             aria-label="Rodapé"
           >
             <a href="#cardapio" className="hover:text-gold">
@@ -62,7 +62,7 @@ export function Footer() {
               Maps
             </a>
           </nav>
-          <p className="mt-6 text-xs text-muted">
+          <p className="mt-6 text-[0.8125rem] text-muted">
             © {new Date().getFullYear()} {site.name}. Reservas e delivery pelo
             WhatsApp.
           </p>
