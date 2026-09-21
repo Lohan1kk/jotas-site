@@ -15,6 +15,7 @@
   --glow: rgba(230, 180, 34, 0.18);
   --background: var(--ink);
   --foreground: var(--cream);
+  --focus: var(--gold);
 }
 
 @theme inline {
@@ -50,6 +51,11 @@ body {
   color: var(--ink);
 }
 
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
 .font-display {
   font-family: var(--font-display), Georgia, serif;
 }
@@ -64,6 +70,51 @@ body {
 
 .section-pad {
   padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: var(--gold-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(230, 180, 34, 0.22);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(244, 239, 230, 0.35);
+  color: var(--cream);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-1px);
 }
 
 .reveal {
@@ -99,6 +150,15 @@ body {
   }
 }
 
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .hero-copy > * {
   opacity: 0;
   animation: hero-rise 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -121,6 +181,33 @@ body {
   animation: hero-zoom 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -132,5 +219,12 @@ body {
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  .btn-primary:hover,
+  .btn-ghost:hover {
+    transform: none;
   }
 }

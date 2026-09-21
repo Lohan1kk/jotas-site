@@ -1,17 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { site } from "@/lib/content";
 
 const links = [
   { href: "#historia", label: "História" },
   { href: "#cardapio", label: "Cardápio" },
+  { href: "#delivery", label: "Delivery" },
   { href: "#reservas", label: "Reservas" },
 ];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const panelId = useId();
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -20,11 +24,25 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    const first = panelRef.current?.querySelector<HTMLElement>("a");
+    first?.focus();
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-ink/85 backdrop-blur-md border-b border-line"
+          ? "border-b border-line bg-ink/85 backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
@@ -38,7 +56,10 @@ export function Header() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav
+          className="hidden items-center gap-7 lg:flex"
+          aria-label="Principal"
+        >
           {links.map((link) => (
             <a
               key={link.href}
@@ -49,24 +70,25 @@ export function Header() {
             </a>
           ))}
           <a
-            href={site.whatsapp}
+            href={site.whatsappReserve}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-sm border border-gold/60 bg-gold/10 px-4 py-2 text-sm uppercase tracking-[0.16em] text-gold-soft transition hover:bg-gold hover:text-ink"
+            className="btn-primary !px-4 !py-2"
           >
             Reservar
           </a>
         </nav>
 
         <button
+          ref={buttonRef}
           type="button"
-          className="flex h-10 w-10 items-center justify-center text-cream md:hidden"
+          className="flex h-11 w-11 items-center justify-center text-cream lg:hidden"
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           aria-expanded={open}
+          aria-controls={panelId}
           onClick={() => setOpen((v) => !v)}
         >
-          <span className="sr-only">Menu</span>
-          <span className="flex flex-col gap-1.5">
+          <span className="flex flex-col gap-1.5" aria-hidden="true">
             <span
               className={`block h-px w-6 bg-current transition ${open ? "translate-y-1.5 rotate-45" : ""}`}
             />
@@ -81,8 +103,12 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-line bg-ink/95 px-6 py-6 md:hidden">
-          <div className="flex flex-col gap-4">
+        <div
+          id={panelId}
+          ref={panelRef}
+          className="border-t border-line bg-ink/95 px-6 py-6 lg:hidden"
+        >
+          <nav className="flex flex-col gap-4" aria-label="Mobile">
             {links.map((link) => (
               <a
                 key={link.href}
@@ -94,15 +120,15 @@ export function Header() {
               </a>
             ))}
             <a
-              href={site.whatsapp}
+              href={site.whatsappReserve}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex w-fit border border-gold px-4 py-2 text-sm uppercase tracking-[0.16em] text-gold"
+              className="btn-primary mt-2 w-fit"
               onClick={() => setOpen(false)}
             >
               Reservar
             </a>
-          </div>
+          </nav>
         </div>
       )}
     </header>
