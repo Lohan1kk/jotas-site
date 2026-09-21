@@ -5,7 +5,7 @@ import { MediaImage } from "@/components/MediaImage";
 import { easeOutExpo } from "@/components/motion";
 import { site } from "@/lib/content";
 
-/** Hero centrado no terço inferior — fundo escuro legível. */
+/** Hero centrado embaixo — fachada bem visível, texto só com plate local. */
 export function Hero() {
   const reduce = useReducedMotion();
 
@@ -19,23 +19,22 @@ export function Hero() {
         <div className={`absolute inset-0 ${reduce ? "" : "hero-ken"} gpu-layer`}>
           <MediaImage
             src="/brand/fachada-hero.jpg"
-            alt=""
+            alt="Fachada do Jota's Bar e Restaurante na Liberdade"
             fill
             priority
             sizes="100vw"
-            quality={80}
-            className="object-cover object-[center_22%] scale-105"
+            quality={85}
+            className="object-cover object-[center_42%]"
             frameClassName="absolute inset-0 h-full w-full"
           />
         </div>
-        {/* Dark luxury wash — same ink as the rest of the site */}
-        <div className="absolute inset-0 bg-[#080808]/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/75 to-[#080808]/40" />
-        <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-[#080808] via-[#080808]/95 to-transparent" />
+        {/* Light top for nav only */}
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#080808]/70 to-transparent" />
+        {/* Soft bottom plate — only under the copy, facade stays open above */}
+        <div className="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-[#080808] via-[#080808]/85 to-transparent md:h-[34%]" />
       </div>
 
-      {/* Content anchored low + centered */}
-      <div className="section-pad relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-end pb-20 pt-28 text-center md:pb-28 md:pt-36">
+      <div className="section-pad relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-end pb-16 pt-28 text-center md:pb-24 md:pt-36">
         <motion.p
           className="text-[0.7rem] font-medium uppercase tracking-[0.42em] text-gold"
           initial={reduce ? false : { opacity: 0, y: 14 }}
@@ -46,7 +45,8 @@ export function Hero() {
         </motion.p>
 
         <motion.h1
-          className="mt-5 font-display text-[clamp(4.25rem,14vw,8rem)] font-semibold uppercase leading-[0.88] tracking-[0.06em] text-neutral-100 drop-shadow-[0_2px_24px_rgba(0,0,0,0.65)]"
+          className="mt-4 font-display text-[clamp(3.75rem,12vw,7rem)] font-semibold uppercase leading-[0.9] tracking-[0.06em] text-neutral-100"
+          style={{ textShadow: "0 2px 28px rgba(0,0,0,0.75)" }}
           initial={reduce ? false : { opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.06, ease: easeOutExpo }}
@@ -55,7 +55,7 @@ export function Hero() {
         </motion.h1>
 
         <motion.div
-          className="mx-auto mt-6 flex w-full max-w-xs items-center gap-4"
+          className="mx-auto mt-5 flex w-full max-w-xs items-center gap-4"
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.16 }}
@@ -67,7 +67,8 @@ export function Hero() {
         </motion.div>
 
         <motion.p
-          className="mt-6 font-display text-[clamp(1.25rem,2.6vw,1.85rem)] leading-snug text-neutral-100"
+          className="mt-5 font-display text-[clamp(1.2rem,2.4vw,1.75rem)] leading-snug text-neutral-100"
+          style={{ textShadow: "0 2px 18px rgba(0,0,0,0.7)" }}
           initial={reduce ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: easeOutExpo }}
@@ -76,20 +77,11 @@ export function Hero() {
           <span className="mt-1 block text-gold-soft">{site.tagline}</span>
         </motion.p>
 
-        <motion.p
-          className="mx-auto mt-4 max-w-md text-sm font-light leading-relaxed text-neutral-400 md:text-[0.95rem]"
-          initial={reduce ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.28, ease: easeOutExpo }}
-        >
-          Pratos do dia, lanches artesanais e porções — no coração da Liberdade.
-        </motion.p>
-
         <motion.div
-          className="mt-9 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center"
+          className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center"
           initial={reduce ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.34, ease: easeOutExpo }}
+          transition={{ duration: 0.65, delay: 0.3, ease: easeOutExpo }}
         >
           <motion.a
             href={site.whatsappReserve}
