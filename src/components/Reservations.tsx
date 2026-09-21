@@ -45,10 +45,7 @@ export function Reservations() {
           <dl className="mt-10 space-y-6 text-sm">
             <div>
               <dt className="uppercase tracking-[0.2em] text-muted">Horário</dt>
-              <dd className="mt-2 text-cream/90">
-                <p>{site.hours.closingHint}.</p>
-                <p className="mt-1 text-muted">{site.hours.note}</p>
-              </dd>
+              <dd className="mt-2 text-cream/90">{site.hours.label}</dd>
             </div>
             <div>
               <dt className="uppercase tracking-[0.2em] text-muted">Morada</dt>

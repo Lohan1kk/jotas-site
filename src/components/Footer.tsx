@@ -30,9 +30,7 @@ export function Footer() {
               {site.instagramHandle}
             </a>
           </p>
-          <p className="mt-3 text-sm text-muted">
-            {site.hours.closingHint}. {site.hours.note}
-          </p>
+          <p className="mt-3 text-sm text-cream/70">{site.hours.label}</p>
         </div>
 
         <div className="max-w-md">
@@ -65,8 +63,8 @@ export function Footer() {
             </a>
           </nav>
           <p className="mt-6 text-xs text-muted">
-            © {new Date().getFullYear()} {site.name}. Confirme horários e
-            disponibilidade no WhatsApp.
+            © {new Date().getFullYear()} {site.name}. Reservas e delivery pelo
+            WhatsApp.
           </p>
         </div>
       </div>

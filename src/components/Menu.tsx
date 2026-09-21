@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useId, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import {
@@ -45,8 +44,8 @@ export function Menu() {
             Do prato do dia ao beirute Jotas Tudo
           </h2>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/70">
-            Destaques do salão, com preços de sucos e bebidas conforme o
-            cardápio físico. Demais valores no balcão ou delivery.
+            Destaques tipográficos do salão. Preços de sucos e bebidas conforme
+            o cardápio; demais valores no balcão ou delivery.
           </p>
         </Reveal>
 
@@ -54,7 +53,7 @@ export function Menu() {
           <div
             role="tablist"
             aria-label="Secções do cardápio"
-            className="-mx-1 flex gap-2 overflow-x-auto border-b border-line pb-4 px-1"
+            className="-mx-1 flex gap-2 overflow-x-auto border-b border-line px-1 pb-4"
           >
             {tabs.map((item) => {
               const selected = tab === item.id;
@@ -92,174 +91,152 @@ export function Menu() {
           </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-7" delay={100}>
+        <Reveal className="mt-10" delay={100}>
+          <div
+            role="tabpanel"
+            id={`${baseId}-panel-${tab}`}
+            aria-labelledby={`${baseId}-tab-${tab}`}
+            className="relative border border-line bg-ink-soft/40 px-5 py-8 sm:px-8 md:px-10 md:py-10"
+          >
             <div
-              role="tabpanel"
-              id={`${baseId}-panel-${tab}`}
-              aria-labelledby={`${baseId}-tab-${tab}`}
-            >
-              {tab === "dia" && (
+              className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"
+              aria-hidden="true"
+            />
+
+            {tab === "dia" && (
+              <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
                 <div className="space-y-8">
                   {pratosDoDia.map((block) => (
-                    <div key={block.day} className="border-b border-line pb-6">
+                    <div key={block.day}>
                       <h3 className="font-display text-2xl text-gold-soft">
                         {block.day}
                       </h3>
-                      <ul className="mt-3 space-y-1.5 text-cream/80">
+                      <ul className="mt-3 space-y-1.5 border-l border-line pl-4 text-cream/80">
                         {block.items.map((item) => (
                           <li key={item}>{item}</li>
                         ))}
                       </ul>
                     </div>
                   ))}
-                  <div>
-                    <h3 className="font-display text-2xl text-gold-soft">
-                      Comerciais
-                    </h3>
-                    <p className="mt-2 text-sm text-muted">
-                      Acompanha arroz, feijão, fritas ou salada.
-                    </p>
-                    <ul className="mt-3 columns-2 gap-6 text-cream/80">
-                      {comerciais.map((item) => (
-                        <li key={item} className="mb-1.5">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
                 </div>
-              )}
-
-              {tab === "lanches" && (
-                <ul className="space-y-6">
-                  {lanches.map((item) => (
-                    <li key={item.name} className="border-b border-line pb-5">
-                      <h3 className="font-display text-2xl text-cream">
-                        {item.name}
-                      </h3>
-                      <p className="mt-1 text-sm text-muted">{item.detail}</p>
-                    </li>
-                  ))}
-                  <p className="text-sm text-muted">
-                    Lanches artesanais no pão brioche.
+                <div>
+                  <h3 className="font-display text-2xl text-gold-soft">
+                    Comerciais
+                  </h3>
+                  <p className="mt-2 text-sm text-muted">
+                    Acompanha arroz, feijão, fritas ou salada.
                   </p>
-                </ul>
-              )}
-
-              {tab === "beirutes" && (
-                <ul className="space-y-5">
-                  {beirutes.map((item) => (
-                    <li key={item.name} className="border-b border-line pb-4">
-                      <h3 className="font-display text-2xl text-cream">
-                        {item.name}
-                      </h3>
-                      <p className="mt-1 text-sm text-muted">{item.detail}</p>
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              {tab === "porcoes" && (
-                <ul className="grid gap-3 sm:grid-cols-2">
-                  {porcoes.map((item) => (
-                    <li
-                      key={item}
-                      className="border-b border-line py-2 text-cream/85"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              {tab === "bebidas" && (
-                <div className="space-y-10">
-                  <div>
-                    <h3 className="font-display text-2xl text-gold-soft">
-                      Sucos naturais
-                    </h3>
-                    <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                      {sucos.bases.map((item) => (
-                        <li
-                          key={item.name}
-                          className="flex justify-between gap-4 border-b border-line py-2 text-cream/85"
-                        >
-                          <span>{item.name}</span>
-                          <span className="text-gold">{item.price}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-4 text-sm text-muted">
-                      Sabores: {sucos.flavors}.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-2xl text-gold-soft">
-                      Bebidas diversas
-                    </h3>
-                    <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                      {bebidas.map((item) => (
-                        <li
-                          key={item.name}
-                          className="flex justify-between gap-4 border-b border-line py-2 text-cream/85"
-                        >
-                          <span>{item.name}</span>
-                          <span className="text-gold">{item.price}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-4 text-sm text-muted">
-                      Refrigerantes e outras opções no cardápio físico do salão.
-                    </p>
-                  </div>
+                  <ul className="mt-5 space-y-3">
+                    {comerciais.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-baseline justify-between gap-4 border-b border-line pb-2 text-cream/85"
+                      >
+                        <span className="font-display text-xl">{item}</span>
+                        <span
+                          className="h-px flex-1 bg-line"
+                          aria-hidden="true"
+                        />
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              )}
-            </div>
-          </Reveal>
-
-          <Reveal className="lg:col-span-5" delay={160}>
-            <div className="space-y-4 lg:sticky lg:top-28">
-              <figure className="relative aspect-[3/4] overflow-hidden sm:aspect-[4/5]">
-                <Image
-                  src={
-                    tab === "bebidas" || tab === "porcoes"
-                      ? "/brand/cardapio-porcoes-sucos.png"
-                      : "/brand/cardapio-pratos-lanches.png"
-                  }
-                  alt={
-                    tab === "bebidas" || tab === "porcoes"
-                      ? "Cardápio — porções e sucos"
-                      : "Cardápio impresso — pratos do dia e lanches"
-                  }
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover object-top transition duration-700"
-                />
-              </figure>
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <figure className="relative aspect-[3/4] overflow-hidden">
-                  <Image
-                    src="/brand/cardapio-bebidas.png"
-                    alt="Cardápio — bebidas e sucos com preços"
-                    fill
-                    sizes="20vw"
-                    className="object-cover object-center"
-                  />
-                </figure>
-                <figure className="relative aspect-[3/4] overflow-hidden">
-                  <Image
-                    src="/brand/jogo-americano.png"
-                    alt="Jogo americano Jota's"
-                    fill
-                    sizes="20vw"
-                    className="object-cover object-center"
-                  />
-                </figure>
               </div>
-            </div>
-          </Reveal>
-        </div>
+            )}
+
+            {tab === "lanches" && (
+              <ul className="mx-auto max-w-2xl space-y-6">
+                {lanches.map((item) => (
+                  <li key={item.name} className="border-b border-line pb-5">
+                    <h3 className="font-display text-2xl text-cream md:text-3xl">
+                      {item.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-muted">{item.detail}</p>
+                  </li>
+                ))}
+                <p className="text-sm text-muted">
+                  Lanches artesanais no pão brioche.
+                </p>
+              </ul>
+            )}
+
+            {tab === "beirutes" && (
+              <ul className="mx-auto grid max-w-3xl gap-5 sm:grid-cols-2">
+                {beirutes.map((item) => (
+                  <li
+                    key={item.name}
+                    className="border-b border-line pb-4 sm:border-b-0 sm:border-l sm:border-line sm:pb-0 sm:pl-5"
+                  >
+                    <h3 className="font-display text-2xl text-cream">
+                      {item.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-muted">{item.detail}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {tab === "porcoes" && (
+              <ul className="mx-auto grid max-w-3xl gap-x-10 gap-y-1 sm:grid-cols-2">
+                {porcoes.map((item) => (
+                  <li
+                    key={item}
+                    className="border-b border-line py-3 font-display text-xl text-cream/90"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {tab === "bebidas" && (
+              <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+                <div>
+                  <h3 className="font-display text-2xl text-gold-soft">
+                    Sucos naturais
+                  </h3>
+                  <ul className="mt-5 space-y-2">
+                    {sucos.bases.map((item) => (
+                      <li
+                        key={item.name}
+                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream/85"
+                      >
+                        <span>{item.name}</span>
+                        <span className="tabular-nums text-gold">
+                          {item.price}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-4 text-sm leading-relaxed text-muted">
+                    Sabores: {sucos.flavors}.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-display text-2xl text-gold-soft">
+                    Bebidas diversas
+                  </h3>
+                  <ul className="mt-5 space-y-2">
+                    {bebidas.map((item) => (
+                      <li
+                        key={item.name}
+                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream/85"
+                      >
+                        <span>{item.name}</span>
+                        <span className="tabular-nums text-gold">
+                          {item.price}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-4 text-sm text-muted">
+                    Refrigerantes e outras opções no balcão.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

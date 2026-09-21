@@ -21,14 +21,10 @@ export const site = {
     "https://www.google.com/maps?q=Av.+da+Liberdade,+9,+Liberdade,+S%C3%A3o+Paulo,+SP,+01503-001&output=embed",
   priceRange: "R$ 40–60",
   reviewsCount: "4.786",
-  /**
-   * Full weekly schedule not publicly verified (as of 2026-09-21).
-   * Only partial note from brand brief: closes around 23:00.
-   */
+  /** Closing confirmed by owner: every day until 23:00. Open time not specified. */
   hours: {
-    verified: false as const,
-    closingHint: "Fecha por volta das 23h",
-    note: "Horário completo ainda não confirmado publicamente — pergunte no WhatsApp no dia.",
+    label: "Todos os dias até às 23h",
+    closes: "23:00",
   },
   payments: [
     "Mastercard",
@@ -185,7 +181,7 @@ export const comerciais = [
   "Linguiça",
 ] as const;
 
-/** Preços legíveis em cardapio-bebidas.png (aprox. 400 ml nos sucos) */
+/** Preços de sucos/bebidas extraídos do cardápio físico (referência interna). */
 export const sucos = {
   bases: [
     { name: "C/ água", price: "R$ 13" },
