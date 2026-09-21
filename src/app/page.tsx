@@ -1,6 +1,7 @@
 import { Delivery } from "@/components/Delivery";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { HouseNow } from "@/components/HouseNow";
 import { Hero } from "@/components/Hero";
 import { Menu } from "@/components/Menu";
 import { Reservations } from "@/components/Reservations";
@@ -18,6 +19,7 @@ export default function Home() {
       <main id="conteudo" className="flex-1">
         <Hero />
         <WelcomeStrip />
+        <HouseNow />
         <Story />
         <Menu />
         <Delivery />

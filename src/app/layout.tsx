@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 import { site } from "@/lib/content";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const display = Cormorant_Garamond({
   variable: "--font-display",
@@ -69,7 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${display.variable} ${body.variable} h-full antialiased`}
+      className={cn("h-full antialiased", display.variable, body.variable)}
     >
       <body className="min-h-full flex flex-col atmosphere">
         <script
