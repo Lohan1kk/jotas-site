@@ -135,20 +135,32 @@ body {
 }
 
 .hero-keyart {
-  filter: blur(46px) saturate(115%);
-  opacity: 0.68;
+  filter: blur(58px) saturate(110%);
+  opacity: 0.5;
 }
 
-/* Drops the generated lockup's black plate, keeping only the luminous type */
+/*
+ * Drops the generated lockup's black plate (screen) and feathers the frame
+ * edges (mask) so the artwork never reads as a pasted rectangle.
+ */
 .hero-wordmark {
   mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(
+    ellipse 62% 58% at 50% 50%,
+    #000 42%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 62% 58% at 50% 50%,
+    #000 42%,
+    transparent 78%
+  );
 }
 
 .hero-aurora {
   background:
-    radial-gradient(ellipse 45% 40% at 78% 14%, rgba(212, 160, 23, 0.3), transparent 66%),
-    radial-gradient(ellipse 38% 34% at 62% 32%, rgba(198, 122, 10, 0.18), transparent 62%),
-    radial-gradient(ellipse 42% 38% at 95% 52%, rgba(26, 51, 41, 0.3), transparent 64%);
+    radial-gradient(ellipse 40% 34% at 82% 22%, rgba(212, 160, 23, 0.2), transparent 64%),
+    radial-gradient(ellipse 34% 30% at 96% 58%, rgba(26, 51, 41, 0.26), transparent 62%);
   animation: aurora 18s ease-in-out infinite alternate;
 }
 

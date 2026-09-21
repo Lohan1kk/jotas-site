@@ -57,7 +57,13 @@ export function Header() {
       transition={{ duration: 0.35, ease: easeOutExpo }}
       style={{ borderBottomWidth: 1, borderBottomStyle: "solid" }}
     >
-      <div className="section-pad mx-auto flex h-16 max-w-7xl items-center justify-between md:h-20">
+      {/* Scrim keeps nav legible over bright hero light */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink/80 to-transparent"
+        aria-hidden="true"
+      />
+
+      <div className="section-pad relative mx-auto flex h-16 max-w-7xl items-center justify-between md:h-20">
         <a href="#topo" className="group flex flex-col leading-none">
           <span className="font-display text-2xl tracking-[0.08em] text-cream transition group-hover:text-gold md:text-3xl">
             {site.shortName}
@@ -75,7 +81,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="relative text-sm uppercase tracking-[0.18em] text-cream/75 transition hover:text-cream"
+              className="relative text-sm uppercase tracking-[0.18em] text-cream/90 transition hover:text-gold"
             >
               {link.label}
             </a>
