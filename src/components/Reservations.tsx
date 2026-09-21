@@ -36,11 +36,11 @@ export function Reservations() {
 
           <dl className="mt-10 space-y-6 text-[0.9375rem]">
             <div>
-              <dt className="text-[0.75rem] uppercase tracking-[0.2em] text-gold">Horário</dt>
+              <dt className="text-[0.8125rem] uppercase tracking-[0.2em] text-gold">Horário</dt>
               <dd className="mt-2 text-cream">{site.hours.label}</dd>
             </div>
             <div>
-              <dt className="text-[0.75rem] uppercase tracking-[0.2em] text-gold">Morada</dt>
+              <dt className="text-[0.8125rem] uppercase tracking-[0.2em] text-gold">Morada</dt>
               <dd className="mt-2 text-cream">
                 <a
                   href={site.mapsUrl}
@@ -53,7 +53,7 @@ export function Reservations() {
               </dd>
             </div>
             <div>
-              <dt className="text-[0.75rem] uppercase tracking-[0.2em] text-gold">Telefone</dt>
+              <dt className="text-[0.8125rem] uppercase tracking-[0.2em] text-gold">Telefone</dt>
               <dd className="mt-2">
                 <a
                   href={`tel:${site.phoneTel}`}
@@ -64,7 +64,7 @@ export function Reservations() {
               </dd>
             </div>
             <div>
-              <dt className="text-[0.75rem] uppercase tracking-[0.2em] text-gold">
+              <dt className="text-[0.8125rem] uppercase tracking-[0.2em] text-gold">
                 Instagram
               </dt>
               <dd className="mt-2">
@@ -108,7 +108,7 @@ export function Reservations() {
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block sm:col-span-2">
-                <span className="text-[0.75rem] uppercase tracking-[0.18em] text-gold">
+                <span className="text-[0.8125rem] uppercase tracking-[0.18em] text-gold">
                   Nome
                 </span>
                 <input
@@ -120,7 +120,7 @@ export function Reservations() {
                 />
               </label>
               <label className="block">
-                <span className="text-[0.75rem] uppercase tracking-[0.18em] text-gold">
+                <span className="text-[0.8125rem] uppercase tracking-[0.18em] text-gold">
                   Pessoas
                 </span>
                 <input
@@ -134,7 +134,7 @@ export function Reservations() {
                 />
               </label>
               <label className="block">
-                <span className="text-[0.75rem] uppercase tracking-[0.18em] text-gold">
+                <span className="text-[0.8125rem] uppercase tracking-[0.18em] text-gold">
                   Quando
                 </span>
                 <input

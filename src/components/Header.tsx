@@ -53,7 +53,7 @@ export function Header() {
           <span className="font-display text-2xl tracking-[0.08em] text-cream transition group-hover:text-gold md:text-3xl">
             {site.shortName}
           </span>
-          <span className="mt-0.5 text-[0.65rem] uppercase tracking-[0.28em] text-muted">
+          <span className="mt-0.5 text-[0.65rem] uppercase tracking-[0.28em] text-cream/70">
             Bar e Restaurante
           </span>
         </a>

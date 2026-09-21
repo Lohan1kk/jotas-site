@@ -33,7 +33,7 @@ export function WelcomeStrip() {
       <motion.div
         ref={trackRef}
         style={reduce ? undefined : { x }}
-        className="flex w-max gap-10 px-6 text-xs uppercase tracking-[0.28em] text-stone sm:text-sm"
+        className="flex w-max gap-10 px-6 text-xs uppercase tracking-[0.28em] text-cream/80 sm:text-sm"
       >
         {items.map((label, i) => (
           <span

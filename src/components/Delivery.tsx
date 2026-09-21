@@ -10,9 +10,9 @@ export function Delivery() {
   const reduce = useReducedMotion();
 
   return (
-    <Section id="delivery" tone="raised" labelledBy="delivery-heading">
+    <Section id="delivery" labelledBy="delivery-heading">
       <Reveal>
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-end lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
           <SectionHeading
             index="03"
             eyebrow="Delivery"
@@ -21,15 +21,17 @@ export function Delivery() {
             lead={`Mesmo número do salão: ${site.phoneDisplay}. Reserva e pedido no mesmo canal.`}
           />
 
-          <div className="panel p-6 md:p-8">
-            <p className="text-[0.75rem] uppercase tracking-[0.2em] text-gold">
+          <div className="panel flex flex-col justify-between p-6 md:p-8">
+            <div>
+            <p className="text-[0.8125rem] uppercase tracking-[0.2em] text-gold">
               Pagamentos
             </p>
-            <p className="mt-3 text-[0.9375rem] leading-relaxed text-cream/85">
-              {site.payments.join(" · ")}
-            </p>
+              <p className="mt-3 text-[0.9375rem] leading-relaxed text-cream/90">
+                {site.payments.join(" · ")}
+              </p>
+            </div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <motion.a
                 href={site.whatsappDelivery}
                 target="_blank"

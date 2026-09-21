@@ -3,16 +3,17 @@
 :root {
   --ink: #0c0b0a;
   --ink-soft: #141210;
-  --stone: #c9b8a0;
-  --cream: #f2ebe0;
+  --stone: #d8cbb8;
+  --cream: #f4efe6;
   --gold: #d4a017;
-  --gold-soft: #e8c56a;
+  --gold-soft: #ebc978;
   --amber: #c67a0a;
   --wood: #5c3f28;
   --seat: #1a3329;
-  --muted: #b6ab9c;
-  --line: rgba(242, 235, 224, 0.14);
-  --glow: rgba(212, 160, 23, 0.12);
+  /* Lifted for AA-ish body copy on dark surfaces */
+  --muted: #cfc3b2;
+  --line: rgba(244, 239, 230, 0.16);
+  --glow: rgba(212, 160, 23, 0.14);
   --background: var(--ink);
   --foreground: var(--cream);
   --focus: var(--gold);
@@ -82,7 +83,7 @@ body {
 .panel {
   border: 1px solid var(--line);
   border-radius: 1.25rem;
-  background: rgba(20, 18, 16, 0.6);
+  background: rgba(20, 18, 16, 0.78);
 }
 
 .btn-primary {
@@ -147,32 +148,15 @@ body {
 }
 
 .hero-keyart {
-  filter: blur(58px) saturate(110%);
-  opacity: 0.5;
-}
-
-/*
- * Drops the generated lockup's black plate (screen) and feathers the frame
- * edges (mask) so the artwork never reads as a pasted rectangle.
- */
-.hero-wordmark {
-  mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(
-    ellipse 62% 58% at 50% 50%,
-    #000 42%,
-    transparent 78%
-  );
-  mask-image: radial-gradient(
-    ellipse 62% 58% at 50% 50%,
-    #000 42%,
-    transparent 78%
-  );
+  filter: blur(28px) saturate(125%);
+  opacity: 0.72;
 }
 
 .hero-aurora {
   background:
-    radial-gradient(ellipse 40% 34% at 82% 22%, rgba(212, 160, 23, 0.2), transparent 64%),
-    radial-gradient(ellipse 34% 30% at 96% 58%, rgba(26, 51, 41, 0.26), transparent 62%);
+    radial-gradient(ellipse 48% 40% at 76% 14%, rgba(212, 160, 23, 0.34), transparent 66%),
+    radial-gradient(ellipse 38% 34% at 92% 58%, rgba(26, 51, 41, 0.34), transparent 64%),
+    radial-gradient(ellipse 30% 28% at 18% 72%, rgba(92, 63, 40, 0.22), transparent 60%);
   animation: aurora 18s ease-in-out infinite alternate;
 }
 

@@ -32,7 +32,7 @@ export function Menu() {
   const reduce = useReducedMotion();
 
   return (
-    <Section id="cardapio" labelledBy={`${baseId}-heading`}>
+    <Section id="cardapio" tone="raised" labelledBy={`${baseId}-heading`}>
       <div>
         <Reveal>
           <SectionHeading
@@ -74,7 +74,7 @@ export function Menu() {
                     }
                   }}
                   className={`relative shrink-0 px-4 py-3 text-sm uppercase tracking-[0.14em] transition ${
-                    selected ? "text-ink" : "text-cream/80 hover:text-gold"
+                    selected ? "text-ink" : "text-cream hover:text-gold"
                   }`}
                 >
                   {selected && (
@@ -113,7 +113,7 @@ export function Menu() {
                       <h3 className="font-display text-2xl text-gold-soft">
                         {block.day}
                       </h3>
-                      <ul className="mt-3 space-y-1.5 border-l border-line pl-4 text-cream/90">
+                      <ul className="mt-3 space-y-1.5 border-l border-line pl-4 text-cream">
                         {block.items.map((item) => (
                           <li key={item}>{item}</li>
                         ))}
@@ -125,14 +125,14 @@ export function Menu() {
                   <h3 className="font-display text-2xl text-gold-soft">
                     Comerciais
                   </h3>
-                  <p className="mt-2 text-[0.9375rem] text-muted">
+                  <p className="mt-2 text-[0.9375rem] text-cream/85">
                     Acompanha arroz, feijão, fritas ou salada.
                   </p>
                   <ul className="mt-5 space-y-3">
                     {comerciais.map((item) => (
                       <li
                         key={item}
-                        className="flex items-baseline justify-between gap-4 border-b border-line pb-2 text-cream/90"
+                        className="flex items-baseline justify-between gap-4 border-b border-line pb-2 text-cream"
                       >
                         <span className="font-display text-xl">{item}</span>
                         <span
@@ -153,10 +153,10 @@ export function Menu() {
                     <h3 className="font-display text-2xl text-cream md:text-3xl">
                       {item.name}
                     </h3>
-                    <p className="mt-1 text-[0.9375rem] text-muted">{item.detail}</p>
+                    <p className="mt-1 text-[0.9375rem] text-cream/85">{item.detail}</p>
                   </li>
                 ))}
-                <p className="text-[0.9375rem] text-muted">
+                <p className="text-[0.9375rem] text-cream/85">
                   Lanches artesanais no pão brioche.
                 </p>
               </ul>
@@ -172,7 +172,7 @@ export function Menu() {
                     <h3 className="font-display text-2xl text-cream">
                       {item.name}
                     </h3>
-                    <p className="mt-1 text-[0.9375rem] text-muted">{item.detail}</p>
+                    <p className="mt-1 text-[0.9375rem] text-cream/85">{item.detail}</p>
                   </li>
                 ))}
               </ul>
@@ -183,7 +183,7 @@ export function Menu() {
                 {porcoes.map((item) => (
                   <li
                     key={item}
-                    className="border-b border-line py-3 font-display text-xl text-cream/90"
+                    className="border-b border-line py-3 font-display text-xl text-cream"
                   >
                     {item}
                   </li>
@@ -201,7 +201,7 @@ export function Menu() {
                     {sucos.bases.map((item) => (
                       <li
                         key={item.name}
-                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream/90"
+                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream"
                       >
                         <span>{item.name}</span>
                         <span className="tabular-nums text-gold">
@@ -210,7 +210,7 @@ export function Menu() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-4 text-sm leading-relaxed text-muted">
+                  <p className="mt-4 text-sm leading-relaxed text-cream/85">
                     Sabores: {sucos.flavors}.
                   </p>
                 </div>
@@ -222,7 +222,7 @@ export function Menu() {
                     {bebidas.map((item) => (
                       <li
                         key={item.name}
-                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream/90"
+                        className="flex justify-between gap-4 border-b border-line py-2.5 text-cream"
                       >
                         <span>{item.name}</span>
                         <span className="tabular-nums text-gold">
@@ -231,7 +231,7 @@ export function Menu() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-4 text-[0.9375rem] text-muted">
+                  <p className="mt-4 text-[0.9375rem] text-cream/85">
                     Refrigerantes e outras opções no balcão.
                   </p>
                 </div>

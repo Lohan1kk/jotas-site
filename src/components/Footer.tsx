@@ -8,7 +8,7 @@ export function Footer() {
           <p className="font-display text-4xl tracking-[0.08em] text-cream">
             {site.shortName}
           </p>
-          <p className="mt-2 text-sm uppercase tracking-[0.22em] text-muted">
+          <p className="mt-2 text-sm uppercase tracking-[0.22em] text-cream/75">
             Bar e Restaurante · Liberdade
           </p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/85">
@@ -62,7 +62,7 @@ export function Footer() {
               Maps
             </a>
           </nav>
-          <p className="mt-6 text-[0.8125rem] text-muted">
+          <p className="mt-6 text-[0.8125rem] text-cream/75">
             © {new Date().getFullYear()} {site.name}. Reservas e delivery pelo
             WhatsApp.
           </p>

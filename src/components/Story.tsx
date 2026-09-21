@@ -33,7 +33,7 @@ export function Story() {
           <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-7 border-t border-line pt-8">
             {facts.map((fact) => (
               <div key={fact.label}>
-                <dt className="text-[0.75rem] uppercase tracking-[0.2em] text-gold">
+                <dt className="text-[0.8125rem] uppercase tracking-[0.2em] text-gold">
                   {fact.label}
                 </dt>
                 <dd className="mt-2 text-[0.9375rem] text-cream">
