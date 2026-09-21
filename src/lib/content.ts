@@ -39,12 +39,15 @@ export const site = {
     "Alelo",
   ],
   welcomeStrip: [
-    "Bem-vindo à Liberdade",
+    "Jota's",
+    "Liberdade",
+    "Bar e Restaurante",
     "Pratos do dia",
     "Lanches artesanais",
     "Beirutes",
     "Porções para a mesa",
     "Delivery pelo WhatsApp",
+    "Tamanho dos seus sonhos",
   ],
 } as const;
 

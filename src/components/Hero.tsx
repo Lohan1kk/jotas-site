@@ -11,12 +11,12 @@ export function Hero() {
   return (
     <section
       id="topo"
-      className="relative isolate flex min-h-dvh flex-col justify-center overflow-hidden bg-[#080706] pt-16 md:pt-20"
+      className="relative isolate flex min-h-dvh flex-col justify-center overflow-hidden bg-[#12100e] pt-16 md:pt-20"
       aria-label="Apresentação"
     >
-      {/* Full-bleed atmosphere — centre kept clear for type (craft pbb.ae) */}
+      {/* Full-bleed atmosphere — ambient loops, not scroll-driven */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className="hero-keyart absolute -inset-[12%]">
+        <div className="hero-keyart absolute -inset-[14%]">
           <Image
             src="/brand/keyart.jpg"
             alt=""
@@ -27,9 +27,10 @@ export function Hero() {
           />
         </div>
         <div className="hero-aurora absolute inset-0" />
-        {/* Strong centre plate so cream type never fights the light rays */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_52%_68%_at_50%_48%,rgba(8,7,6,0.97)_0%,rgba(8,7,6,0.82)_42%,rgba(8,7,6,0.45)_72%,transparent_88%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#080706] to-transparent" />
+        <div className="hero-aurora-slow absolute inset-0" />
+        {/* Centre plate — slightly open so keyart breathes */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_52%_68%_at_50%_48%,rgba(18,16,14,0.92)_0%,rgba(18,16,14,0.78)_42%,rgba(18,16,14,0.4)_72%,transparent_88%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#12100e] to-transparent" />
         <div className="grain absolute inset-0" />
       </div>
 
@@ -43,7 +44,6 @@ export function Hero() {
           Liberdade · São Paulo
         </motion.p>
 
-        {/* Brand as the hero signal — real type, not a blended plate */}
         <motion.div
           className="relative mt-5 md:mt-7"
           initial={reduce ? false : { opacity: 0, y: 28 }}
@@ -51,16 +51,25 @@ export function Hero() {
           transition={{ duration: 1.05, delay: 0.08, ease: easeOutExpo }}
         >
           <div
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[min(52vw,22rem)] w-[min(92vw,40rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(212,160,23,0.22),transparent_68%)] blur-2xl"
+            className="hero-halo pointer-events-none absolute left-1/2 top-1/2 h-[min(52vw,22rem)] w-[min(92vw,40rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(219,171,42,0.28),transparent_68%)] blur-2xl"
             aria-hidden="true"
           />
           <h1 className="relative font-display text-[clamp(4.25rem,16vw,9.5rem)] font-semibold leading-[0.88] tracking-[0.04em] text-cream">
             {site.shortName}
           </h1>
           <div className="relative mx-auto mt-4 flex max-w-md items-center gap-4 md:mt-5">
-            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/70" aria-hidden="true" />
-            <span className="h-1.5 w-1.5 rounded-full bg-gold shadow-[0_0_18px_rgba(212,160,23,0.85)]" aria-hidden="true" />
-            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/70" aria-hidden="true" />
+            <span
+              className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/70"
+              aria-hidden="true"
+            />
+            <span
+              className="hero-gold-dot h-1.5 w-1.5 rounded-full bg-gold"
+              aria-hidden="true"
+            />
+            <span
+              className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/70"
+              aria-hidden="true"
+            />
           </div>
           <p className="relative mt-4 text-[0.8125rem] font-medium uppercase tracking-[0.38em] text-cream md:text-sm md:tracking-[0.46em]">
             Bar e Restaurante

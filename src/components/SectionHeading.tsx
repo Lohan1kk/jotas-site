@@ -34,9 +34,8 @@ export function SectionHeading({
         <motion.span
           className="h-px flex-1 bg-gradient-to-r from-gold/40 to-transparent"
           initial={reduce ? false : { scaleX: 0 }}
-          whileInView={reduce ? undefined : { scaleX: 1 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 1.1, ease: easeOutExpo }}
+          animate={reduce ? undefined : { scaleX: 1 }}
+          transition={{ duration: 1.1, ease: easeOutExpo, delay: 0.15 }}
           style={{ originX: 0 }}
           aria-hidden="true"
         />

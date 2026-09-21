@@ -21,7 +21,7 @@ export function WelcomeStrip() {
     if (!el) return;
     const half = el.scrollWidth / 2;
     if (half === 0) return;
-    const next = x.get() - delta * 0.035;
+    const next = x.get() - delta * 0.048;
     x.set(next <= -half ? 0 : next);
   });
 

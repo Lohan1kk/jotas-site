@@ -5,19 +5,19 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --ink: #0c0b0a;
-  --ink-soft: #141210;
+  /* Slightly lifted warm-dark — still ink, not light theme */
+  --ink: #12100e;
+  --ink-soft: #1a1714;
   --stone: #d8cbb8;
-  --cream: #f4efe6;
-  --gold: #d4a017;
-  --gold-soft: #ebc978;
+  --cream: #f7f3eb;
+  --gold: #dbab2a;
+  --gold-soft: #f0d28a;
   --amber: #c67a0a;
   --wood: #5c3f28;
   --seat: #1a3329;
-  /* Lifted for AA-ish body copy on dark surfaces */
-  --muted: #cfc3b2;
-  --line: rgba(244, 239, 230, 0.16);
-  --glow: rgba(212, 160, 23, 0.14);
+  --muted: #d8cdb8;
+  --line: rgba(247, 243, 235, 0.2);
+  --glow: rgba(219, 171, 42, 0.18);
   --focus: var(--gold);
   --background: var(--ink);
   --foreground: var(--cream);
@@ -150,7 +150,7 @@ body {
 .panel {
   border: 1px solid var(--line);
   border-radius: 1.25rem;
-  background: rgba(20, 18, 16, 0.78);
+  background: rgba(26, 22, 18, 0.72);
 }
 
 .btn-primary {
@@ -167,11 +167,13 @@ body {
   transition:
     background 0.25s ease,
     box-shadow 0.25s ease;
+  animation: cta-glow 4.5s ease-in-out infinite;
 }
 
 .btn-primary:hover {
   background: var(--gold-soft);
-  box-shadow: 0 10px 28px rgba(212, 160, 23, 0.2);
+  box-shadow: 0 10px 28px rgba(219, 171, 42, 0.28);
+  animation: none;
 }
 
 .btn-ghost {
@@ -216,15 +218,41 @@ body {
 
 .hero-keyart {
   filter: blur(28px) saturate(125%);
-  opacity: 0.72;
+  opacity: 0.78;
+  animation: ken-burns 28s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 .hero-aurora {
   background:
-    radial-gradient(ellipse 48% 40% at 76% 14%, rgba(212, 160, 23, 0.34), transparent 66%),
+    radial-gradient(ellipse 48% 40% at 76% 14%, rgba(219, 171, 42, 0.36), transparent 66%),
     radial-gradient(ellipse 38% 34% at 92% 58%, rgba(26, 51, 41, 0.34), transparent 64%),
     radial-gradient(ellipse 30% 28% at 18% 72%, rgba(92, 63, 40, 0.22), transparent 60%);
   animation: aurora 18s ease-in-out infinite alternate;
+}
+
+.hero-aurora-slow {
+  background:
+    radial-gradient(ellipse 42% 36% at 22% 28%, rgba(219, 171, 42, 0.18), transparent 70%),
+    radial-gradient(ellipse 36% 40% at 68% 78%, rgba(92, 63, 40, 0.2), transparent 68%);
+  animation: aurora-slow 26s ease-in-out infinite alternate;
+}
+
+.hero-halo {
+  animation: halo-pulse 5.5s ease-in-out infinite;
+}
+
+.hero-gold-dot {
+  animation: gold-breathe 3.8s ease-in-out infinite;
+}
+
+@keyframes ken-burns {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-2.5%, 1.5%, 0) scale(1.07);
+  }
 }
 
 @keyframes aurora {
@@ -238,6 +266,92 @@ body {
   }
 }
 
+@keyframes aurora-slow {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.02);
+    opacity: 0.55;
+  }
+  to {
+    transform: translate3d(2.5%, -2%, 0) scale(1.1);
+    opacity: 0.85;
+  }
+}
+
+@keyframes halo-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+@keyframes gold-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 12px rgba(219, 171, 42, 0.55);
+    opacity: 0.85;
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(219, 171, 42, 0.95);
+    opacity: 1;
+  }
+}
+
+@keyframes cta-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(219, 171, 42, 0);
+  }
+  50% {
+    box-shadow: 0 8px 28px rgba(219, 171, 42, 0.32);
+  }
+}
+
+@keyframes soup-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.82;
+  }
+  to {
+    transform: translate3d(2%, -1.5%, 0) scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes corner-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes wa-pulse {
+  0%,
+  100% {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 0 0 rgba(219, 171, 42, 0.35);
+  }
+  50% {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 0 10px rgba(219, 171, 42, 0);
+  }
+}
+
+@keyframes tab-sheen {
+  0%,
+  100% {
+    box-shadow: inset 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.22);
+  }
+}
+
 .grain {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   opacity: 0.045;
@@ -247,11 +361,13 @@ body {
 /* Google Flow–inspired soup haze: colors sampled from the fachada (wood/gold) */
 .flow-soup {
   background:
-    radial-gradient(ellipse 55% 45% at 30% 40%, rgba(212, 160, 23, 0.16), transparent 70%),
+    radial-gradient(ellipse 55% 45% at 30% 40%, rgba(219, 171, 42, 0.18), transparent 70%),
     radial-gradient(ellipse 50% 50% at 75% 55%, rgba(92, 63, 40, 0.35), transparent 68%),
     radial-gradient(ellipse 40% 35% at 50% 80%, rgba(26, 51, 41, 0.22), transparent 65%);
   filter: blur(42px);
   opacity: 0.9;
+  animation: soup-drift 16s ease-in-out infinite alternate;
+  will-change: transform, opacity;
 }
 
 .flow-glass {
@@ -266,16 +382,19 @@ body {
   height: 1.15rem;
   border-left: 1.5px solid rgba(242, 235, 224, 0.55);
   border-top: 1.5px solid rgba(242, 235, 224, 0.55);
+  animation: corner-breathe 4.2s ease-in-out infinite;
 }
 
 .flow-corner-tr {
   border-left: 0;
   border-right: 1.5px solid rgba(242, 235, 224, 0.55);
+  animation-delay: 0.4s;
 }
 
 .flow-corner-bl {
   border-top: 0;
   border-bottom: 1.5px solid rgba(242, 235, 224, 0.55);
+  animation-delay: 0.8s;
 }
 
 .flow-corner-br {
@@ -283,14 +402,32 @@ body {
   border-top: 0;
   border-right: 1.5px solid rgba(242, 235, 224, 0.55);
   border-bottom: 1.5px solid rgba(242, 235, 224, 0.55);
+  animation-delay: 1.2s;
+}
+
+.wa-pulse {
+  animation: wa-pulse 3.2s ease-out infinite;
+}
+
+.tab-active-glow {
+  animation: tab-sheen 3.6s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .hero-aurora {
-    animation: none;
+  .hero-keyart,
+  .hero-aurora,
+  .hero-aurora-slow,
+  .hero-halo,
+  .hero-gold-dot,
+  .btn-primary,
+  .flow-soup,
+  .flow-corner,
+  .wa-pulse,
+  .tab-active-glow {
+    animation: none !important;
   }
 }
 

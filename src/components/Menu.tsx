@@ -80,7 +80,7 @@ export function Menu() {
                   {selected && (
                     <motion.span
                       layoutId={reduce ? undefined : "menu-tab"}
-                      className="absolute inset-0 bg-gold"
+                      className="tab-active-glow absolute inset-0 bg-gold"
                       transition={{ duration: 0.35, ease: easeOutExpo }}
                       aria-hidden="true"
                     />
