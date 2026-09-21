@@ -144,7 +144,7 @@ body {
 }
 
 .section-y {
-  padding-block: clamp(4.5rem, 10vw, 8rem);
+  padding-block: clamp(5.5rem, 11vw, 9.5rem);
 }
 
 .panel {

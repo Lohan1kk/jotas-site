@@ -68,7 +68,9 @@ export function Header() {
             </a>
           ))}
           <motion.a
-            href="#reservar"
+            href={site.whatsappReserve}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-primary !px-4 !py-2.5"
             whileHover={reduce ? undefined : { y: -1 }}
             whileTap={reduce ? undefined : { scale: 0.98 }}
@@ -123,7 +125,9 @@ export function Header() {
                 </a>
               ))}
               <a
-                href="#reservar"
+                href={site.whatsappReserve}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary mt-2 w-fit"
                 onClick={() => setOpen(false)}
               >
