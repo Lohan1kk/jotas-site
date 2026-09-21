@@ -10,7 +10,7 @@ import type { ReactNode } from "react";
 
 /** GPU-friendly ease — transform/opacity only */
 export const easeOutExpo: [number, number, number, number] = [
-  0.22, 1, 0.36, 1,
+  0.16, 1, 0.3, 1,
 ];
 
 export const fadeUp: Variants = {
@@ -18,7 +18,7 @@ export const fadeUp: Variants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: easeOutExpo },
+    transition: { duration: 0.6, ease: easeOutExpo },
   },
 };
 
@@ -41,7 +41,7 @@ export function MotionDiv({
   );
 }
 
-/** Scroll reveal — opacity + translateY only (GPU). Once per element. */
+/** Scroll reveal — opacity + translateY only (GPU). */
 export function FadeIn({
   children,
   className = "",
@@ -62,10 +62,11 @@ export function FadeIn({
   return (
     <motion.div
       className={`gpu-layer ${className}`}
+      style={{ willChange: "transform, opacity" }}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.7, delay, ease: easeOutExpo }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay, ease: easeOutExpo }}
     >
       {children}
     </motion.div>

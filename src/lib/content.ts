@@ -48,9 +48,42 @@ export const site = {
     "Lanches artesanais",
     "Beirutes",
     "Porções para a mesa",
+    "Happy Hour",
     "Delivery pelo WhatsApp",
     "Tamanho dos seus sonhos",
   ],
+  /** Editorial copy — dark luxury tone, brand-true */
+  copy: {
+    heroEyebrow: "Liberdade · São Paulo",
+    heroTitle: "JOTA'S",
+    heroLead: "Bar e restaurante no coração da Liberdade",
+    heroBody:
+      "Ambiente aquecido, bar iluminado e mesa para os amigos — pratos do dia, lanches artesanais e porções.",
+    heroCtaPrimary: "Reservar mesa",
+    heroCtaSecondary: "Ver cardápio",
+    hoursEyebrow: "Horários",
+    hoursTitle: "Aberto todos os dias",
+    happyEyebrow: "Happy Hour",
+    happyTitle: "O ritmo da casa",
+    happyBody:
+      "Cerveja gelada, caipirinha e porções para acompanhar — o clima do Jota's na Liberdade.",
+    happyNote: "Consulte promoções do dia no balcão ou pelo WhatsApp.",
+    bannerEyebrow: "A casa",
+    bannerTitle: "Luz baixa, madeira e conversa boa",
+    bannerBody: "Um boteco paulista moderno — acolhedor, social e com comida de verdade.",
+    menuEyebrow: "Recomendações",
+    menuTitle: "O que pedimos na casa",
+    menuLead:
+      "Seleção tipográfica do cardápio. Sucos e bebidas com preço; demais valores no balcão ou delivery.",
+    visitEyebrow: "Visite",
+    visitTitle: "Na Av. da Liberdade, 9",
+    promoTitle: "Sábado na casa",
+    promoBody:
+      "Cerveja gelada, caipirinha e relembrar histórias com os amigos — o clima do nosso jogo americano.",
+    reserveEyebrow: "Reservas",
+    reserveTitle: "Sua mesa te espera",
+    reserveBody: "Reserve pelo WhatsApp. Confirmamos horário e quantidade de pessoas.",
+  },
 } as const;
 
 export const pratosDoDia = [

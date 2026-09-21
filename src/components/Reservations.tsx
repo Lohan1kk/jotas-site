@@ -6,26 +6,26 @@ import { site } from "@/lib/content";
 
 export function Reservations() {
   const reduce = useReducedMotion();
+  const c = site.copy;
 
   return (
     <section
       id="reservas"
-      className="section-pad section-y border-t border-line bg-ink-soft"
+      className="section-pad section-y border-t border-white/10 bg-[#0d0d0d]"
       aria-labelledby="reservas-heading"
     >
-      <FadeIn className="mx-auto max-w-3xl text-center">
-        <p className="text-[0.7rem] uppercase tracking-[0.35em] text-gold">
-          Reservas
+      <FadeIn className="mx-auto max-w-2xl text-center">
+        <p className="text-[0.68rem] uppercase tracking-[0.38em] text-gold">
+          {c.reserveEyebrow}
         </p>
         <h2
           id="reservas-heading"
-          className="mt-4 font-display text-4xl leading-tight text-cream md:text-5xl"
+          className="mt-4 font-display text-4xl leading-tight tracking-wide text-neutral-100 md:text-5xl"
         >
-          Reserve sua mesa
+          {c.reserveTitle}
         </h2>
-        <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-muted md:text-base">
-          Fale conosco pelo WhatsApp — {site.phoneDisplay}. Horário:{" "}
-          {site.hours.label}.
+        <p className="mx-auto mt-5 max-w-md text-sm font-light leading-relaxed text-neutral-400 md:text-base">
+          {c.reserveBody} {site.phoneDisplay}. {site.hours.label}.
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <motion.a
@@ -37,7 +37,7 @@ export function Reservations() {
             whileTap={reduce ? undefined : { scale: 0.98 }}
             transition={{ duration: 0.3, ease: easeOutExpo }}
           >
-            Agendar pelo WhatsApp
+            Reservar pelo WhatsApp
           </motion.a>
           <motion.a
             href={`tel:${site.phoneTel}`}

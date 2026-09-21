@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { InfoHours } from "@/components/InfoHours";
 import { Menu } from "@/components/Menu";
+import { ReservationBar } from "@/components/ReservationBar";
 import { Reservations } from "@/components/Reservations";
 import { StickyWhatsApp } from "@/components/StickyWhatsApp";
 import { Visit } from "@/components/Visit";
@@ -18,6 +19,7 @@ export default function Home() {
       <Header />
       <main id="conteudo" className="flex-1">
         <Hero />
+        <ReservationBar />
         <WelcomeStrip />
         <InfoHours />
         <VisualBanner />
