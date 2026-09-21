@@ -1,22 +1,28 @@
+"use client";
+
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
+import { easeOutExpo } from "@/components/motion";
 import { site } from "@/lib/content";
 
 export function Story() {
+  const reduce = useReducedMotion();
+
   return (
     <section
       id="historia"
-      className="section-pad relative py-24 md:py-32"
+      className="section-pad relative py-24 md:py-36"
       aria-labelledby="historia-heading"
     >
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:gap-16">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:items-center lg:gap-20">
         <Reveal className="lg:col-span-5">
           <p className="text-xs uppercase tracking-[0.32em] text-gold">
             A casa
           </p>
           <h2
             id="historia-heading"
-            className="mt-4 font-display text-4xl leading-tight text-cream md:text-5xl"
+            className="mt-4 font-display text-4xl leading-[1.1] text-cream md:text-5xl lg:text-[3.25rem]"
           >
             Madeira, bar cheio e mesa para os amigos
           </h2>
@@ -29,18 +35,26 @@ export function Story() {
             Faixa {site.priceRange} · cerca de {site.reviewsCount} avaliações no
             Google · salão e delivery.
           </p>
-          <a
+          <motion.a
             href={site.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-ghost mt-8"
+            whileHover={reduce ? undefined : { y: -2 }}
+            whileTap={reduce ? undefined : { scale: 0.98 }}
           >
             {site.instagramHandle}
-          </a>
+          </motion.a>
         </Reveal>
 
         <Reveal className="relative lg:col-span-7" delay={120}>
-          <div className="relative aspect-[4/5] overflow-hidden sm:aspect-[16/11]">
+          <motion.div
+            className="relative aspect-[4/5] overflow-hidden sm:aspect-[16/11]"
+            initial={reduce ? false : { scale: 1.04 }}
+            whileInView={reduce ? undefined : { scale: 1 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 1.2, ease: easeOutExpo }}
+          >
             <Image
               src="/brand/jogo-americano.png"
               alt="Jogo americano do Jota's com identidade chalkboard e bem-vindo"
@@ -48,9 +62,12 @@ export function Story() {
               sizes="(max-width: 1024px) 100vw, 55vw"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/55 to-transparent" />
-          </div>
-          <p className="mt-4 font-display text-2xl text-gold-soft md:text-3xl">
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent"
+              aria-hidden="true"
+            />
+          </motion.div>
+          <p className="mt-5 font-display text-2xl text-gold-soft md:text-3xl">
             “{site.tagline}”
           </p>
         </Reveal>

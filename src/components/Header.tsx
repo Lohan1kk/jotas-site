@@ -1,6 +1,8 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useId, useRef, useState } from "react";
+import { easeOutExpo } from "@/components/motion";
 import { site } from "@/lib/content";
 
 const links = [
@@ -13,6 +15,7 @@ const links = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const reduce = useReducedMotion();
   const panelId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -39,12 +42,20 @@ export function Header() {
   }, [open]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-line bg-ink/85 backdrop-blur-md"
-          : "bg-transparent"
-      }`}
+    <motion.header
+      className="fixed inset-x-0 top-0 z-50"
+      initial={false}
+      animate={{
+        backgroundColor: scrolled
+          ? "rgba(12, 11, 10, 0.88)"
+          : "rgba(12, 11, 10, 0)",
+        borderBottomColor: scrolled
+          ? "rgba(244, 239, 230, 0.12)"
+          : "rgba(244, 239, 230, 0)",
+        backdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
+      }}
+      transition={{ duration: 0.35, ease: easeOutExpo }}
+      style={{ borderBottomWidth: 1, borderBottomStyle: "solid" }}
     >
       <div className="section-pad mx-auto flex h-16 max-w-7xl items-center justify-between md:h-20">
         <a href="#topo" className="group flex flex-col leading-none">
@@ -57,26 +68,28 @@ export function Header() {
         </a>
 
         <nav
-          className="hidden items-center gap-7 lg:flex"
+          className="hidden items-center gap-8 lg:flex"
           aria-label="Principal"
         >
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm uppercase tracking-[0.18em] text-cream/75 transition hover:text-gold"
+              className="relative text-sm uppercase tracking-[0.18em] text-cream/75 transition hover:text-cream"
             >
               {link.label}
             </a>
           ))}
-          <a
+          <motion.a
             href={site.whatsappReserve}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary !px-4 !py-2"
+            whileHover={reduce ? undefined : { y: -1 }}
+            whileTap={reduce ? undefined : { scale: 0.98 }}
           >
             Reservar
-          </a>
+          </motion.a>
         </nav>
 
         <button
@@ -102,35 +115,41 @@ export function Header() {
         </button>
       </div>
 
-      {open && (
-        <div
-          id={panelId}
-          ref={panelRef}
-          className="border-t border-line bg-ink/95 px-6 py-6 lg:hidden"
-        >
-          <nav className="flex flex-col gap-4" aria-label="Mobile">
-            {links.map((link) => (
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id={panelId}
+            ref={panelRef}
+            className="border-t border-line bg-ink/95 px-6 py-6 lg:hidden"
+            initial={reduce ? false : { height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={reduce ? undefined : { height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: easeOutExpo }}
+          >
+            <nav className="flex flex-col gap-4" aria-label="Mobile">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm uppercase tracking-[0.2em] text-cream"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
               <a
-                key={link.href}
-                href={link.href}
-                className="text-sm uppercase tracking-[0.2em] text-cream"
+                href={site.whatsappReserve}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary mt-2 w-fit"
                 onClick={() => setOpen(false)}
               >
-                {link.label}
+                Reservar
               </a>
-            ))}
-            <a
-              href={site.whatsappReserve}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary mt-2 w-fit"
-              onClick={() => setOpen(false)}
-            >
-              Reservar
-            </a>
-          </nav>
-        </div>
-      )}
-    </header>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }

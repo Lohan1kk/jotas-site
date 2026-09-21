@@ -1,7 +1,9 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useId, useState } from "react";
 import { Reveal } from "@/components/Reveal";
+import { easeOutExpo } from "@/components/motion";
 import {
   beirutes,
   bebidas,
@@ -25,6 +27,7 @@ type TabId = (typeof tabs)[number]["id"];
 export function Menu() {
   const [tab, setTab] = useState<TabId>("dia");
   const baseId = useId();
+  const reduce = useReducedMotion();
 
   return (
     <section
@@ -39,11 +42,11 @@ export function Menu() {
           </p>
           <h2
             id={`${baseId}-heading`}
-            className="mt-4 max-w-2xl font-display text-4xl leading-tight text-cream md:text-5xl"
+            className="mt-4 max-w-2xl font-display text-4xl leading-[1.1] text-cream md:text-5xl"
           >
             Do prato do dia ao beirute Jotas Tudo
           </h2>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/70">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/70 md:text-lg">
             Destaques tipográficos do salão. Preços de sucos e bebidas conforme
             o cardápio; demais valores no balcão ou delivery.
           </p>
@@ -53,7 +56,7 @@ export function Menu() {
           <div
             role="tablist"
             aria-label="Secções do cardápio"
-            className="-mx-1 flex gap-2 overflow-x-auto border-b border-line px-1 pb-4"
+            className="-mx-1 flex gap-2 overflow-x-auto border-b border-line px-1 pb-1"
           >
             {tabs.map((item) => {
               const selected = tab === item.id;
@@ -78,13 +81,19 @@ export function Menu() {
                       setTab(tabs[(idx - 1 + tabs.length) % tabs.length].id);
                     }
                   }}
-                  className={`shrink-0 px-4 py-2 text-sm uppercase tracking-[0.14em] transition ${
-                    selected
-                      ? "bg-gold text-ink"
-                      : "text-cream/65 hover:text-gold"
+                  className={`relative shrink-0 px-4 py-3 text-sm uppercase tracking-[0.14em] transition ${
+                    selected ? "text-ink" : "text-cream/65 hover:text-gold"
                   }`}
                 >
-                  {item.label}
+                  {selected && (
+                    <motion.span
+                      layoutId={reduce ? undefined : "menu-tab"}
+                      className="absolute inset-0 bg-gold"
+                      transition={{ duration: 0.35, ease: easeOutExpo }}
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
                 </button>
               );
             })}
@@ -92,17 +101,23 @@ export function Menu() {
         </Reveal>
 
         <Reveal className="mt-10" delay={100}>
-          <div
-            role="tabpanel"
-            id={`${baseId}-panel-${tab}`}
-            aria-labelledby={`${baseId}-tab-${tab}`}
-            className="relative border border-line bg-ink-soft/40 px-5 py-8 sm:px-8 md:px-10 md:py-10"
-          >
+          <div className="relative border border-line bg-ink-soft/40 px-5 py-8 sm:px-8 md:px-10 md:py-10">
             <div
               className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"
               aria-hidden="true"
             />
 
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={tab}
+                role="tabpanel"
+                id={`${baseId}-panel-${tab}`}
+                aria-labelledby={`${baseId}-tab-${tab}`}
+                initial={reduce ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduce ? undefined : { opacity: 0, y: -8 }}
+                transition={{ duration: 0.35, ease: easeOutExpo }}
+              >
             {tab === "dia" && (
               <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
                 <div className="space-y-8">
@@ -235,6 +250,8 @@ export function Menu() {
                 </div>
               </div>
             )}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </Reveal>
       </div>

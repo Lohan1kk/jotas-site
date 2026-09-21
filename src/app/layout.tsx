@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Jota's Bar e Restaurante",
     description:
       "Tamanho dos seus sonhos. Comida boa, bar cheio e Liberdade no endereço. Todos os dias das 6h às 23h.",
-    images: ["/brand/fachada.png"],
+    images: ["/brand/fachada-hero.jpg"],
     locale: "pt_BR",
     type: "website",
   },
@@ -34,7 +34,7 @@ const restaurantJsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   name: site.name,
-  image: ["https://jotas-site.vercel.app/brand/fachada.png"],
+  image: ["https://jotas-site.vercel.app/brand/fachada-hero.jpg"],
   url: "https://jotas-site.vercel.app",
   telephone: site.phoneTel,
   priceRange: site.priceRange,
