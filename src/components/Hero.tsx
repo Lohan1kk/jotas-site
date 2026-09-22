@@ -6,9 +6,26 @@ import { easeOutExpo } from "@/components/motion";
 import { site } from "@/lib/content";
 
 /**
- * Hero cinematico: fachada 4K full-bleed + degrade suave
- * da foto para o charcoal — texto legivel sem corte seco.
+ * Hero HQ — UI/UX Pro Max: Hero-Centric + hospitality gold (#D4AF37).
+ * Framer Motion: stagger hierárquico (opacity/y only) + reduced-motion.
+ * Full-bleed fachada 4K → degrade suave para charcoal (sem interior).
  */
+const copyContainer = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.09, delayChildren: 0.12 },
+  },
+};
+
+const copyItem = {
+  hidden: { opacity: 0, y: 22 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: easeOutExpo },
+  },
+};
+
 export function Hero() {
   const reduce = useReducedMotion();
 
@@ -19,8 +36,11 @@ export function Hero() {
       aria-label="Apresentação"
     >
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div
-          className={`absolute inset-0 ${reduce ? "" : "hero-ken"} gpu-layer`}
+        <motion.div
+          className={`absolute inset-0 gpu-layer ${reduce ? "" : "hero-ken"}`}
+          initial={reduce ? false : { opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.35, ease: easeOutExpo }}
         >
           <MediaImage
             src="/brand/fachada-hero-4k.jpg"
@@ -29,66 +49,66 @@ export function Hero() {
             priority
             sizes="100vw"
             quality={90}
-            className="object-cover object-[center_28%]"
+            className="object-cover object-[center_26%]"
             frameClassName="absolute inset-0 h-full w-full"
           />
-        </div>
+        </motion.div>
 
-        {/* Soft cinematic wash — photo dissolves into ink */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080808]/55 via-transparent to-transparent opacity-90" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/75 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] from-[12%] via-[#080808]/40 via-[42%] to-transparent to-[72%]" />
-        <div className="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-[#080808] to-transparent" />
+        {/* Degrade cinematico: foto → ink (camadas suaves, sem corte seco) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: [
+              "linear-gradient(180deg, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.12) 18%, transparent 38%)",
+              "linear-gradient(0deg, #080808 0%, rgba(8,8,8,0.92) 18%, rgba(8,8,8,0.55) 42%, rgba(8,8,8,0.18) 62%, transparent 78%)",
+              "radial-gradient(ellipse 90% 55% at 50% 100%, rgba(8,8,8,0.88), transparent 70%)",
+            ].join(", "),
+          }}
+        />
       </div>
 
-      <div className="section-pad relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-end pb-16 pt-36 text-center md:pb-24 md:pt-44">
+      <motion.div
+        className="section-pad relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-end pb-16 pt-36 text-center md:pb-24 md:pt-44"
+        variants={reduce ? undefined : copyContainer}
+        initial={reduce ? false : "hidden"}
+        animate="show"
+      >
         <motion.p
           className="text-[0.7rem] font-medium uppercase tracking-[0.42em] text-gold"
-          initial={reduce ? false : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: easeOutExpo }}
+          variants={reduce ? undefined : copyItem}
         >
           Liberdade · São Paulo
         </motion.p>
 
         <motion.h1
           className="mt-5 font-display text-[clamp(3.75rem,12vw,7rem)] font-semibold uppercase leading-[0.88] tracking-[0.06em] text-[#f5f5f5]"
-          style={{ textShadow: "0 4px 40px rgba(0,0,0,0.65)" }}
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.06, ease: easeOutExpo }}
+          style={{ textShadow: "0 4px 48px rgba(0,0,0,0.7)" }}
+          variants={reduce ? undefined : copyItem}
         >
           {site.shortName}
         </motion.h1>
 
         <motion.p
           className="mt-6 max-w-md font-display text-[clamp(1.15rem,2.2vw,1.65rem)] leading-snug text-[#f0f0f0]"
-          style={{ textShadow: "0 2px 24px rgba(0,0,0,0.55)" }}
-          initial={reduce ? false : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.16, ease: easeOutExpo }}
+          style={{ textShadow: "0 2px 28px rgba(0,0,0,0.6)" }}
+          variants={reduce ? undefined : copyItem}
         >
           Bar e Restaurante
           <span className="mt-1.5 block text-gold">{site.tagline}</span>
         </motion.p>
 
-        <motion.div
-          className="mt-10"
-          initial={reduce ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.28, ease: easeOutExpo }}
-        >
+        <motion.div className="mt-10" variants={reduce ? undefined : copyItem}>
           <motion.a
             href="#cardapio"
-            className="btn-primary"
+            className="btn-primary min-h-11 min-w-[11rem]"
             whileHover={reduce ? undefined : { y: -2 }}
             whileTap={reduce ? undefined : { scale: 0.98 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.28, ease: easeOutExpo }}
           >
             Ver cardápio
           </motion.a>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
