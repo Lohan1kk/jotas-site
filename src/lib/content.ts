@@ -71,7 +71,7 @@ export const site = {
     bannerTitle: "Madeira, bar e conversa boa",
     bannerBody: "Um boteco paulista moderno — acolhedor, social e com comida de verdade.",
     menuEyebrow: "Cardápio",
-    menuTitle: "O que pedimos na casa",
+    menuTitle: "Cardápio",
     menuLead:
       "Lanches, beirutes, pratos do dia e porções. Sucos e bebidas com preço; demais valores pelo WhatsApp ou delivery.",
     visitEyebrow: "Visite",

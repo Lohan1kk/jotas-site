@@ -39,14 +39,11 @@ export function Menu() {
     >
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <p className="text-[0.68rem] uppercase tracking-[0.38em] text-gold">
-            {c.menuEyebrow}
-          </p>
           <h2
             id={`${baseId}-heading`}
-            className="mt-4 max-w-2xl font-display text-4xl leading-tight tracking-wide text-[#f5f5f5] md:text-5xl"
+            className="max-w-2xl font-display text-4xl leading-tight tracking-wide text-[#f5f5f5] md:text-5xl"
           >
-            {c.menuTitle}
+            Cardápio
           </h2>
           <p className="mt-4 max-w-lg text-sm font-light leading-relaxed text-neutral-400 md:text-base">
             {c.menuLead}
