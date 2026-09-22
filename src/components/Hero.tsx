@@ -49,17 +49,17 @@ export function Hero() {
             priority
             sizes="100vw"
             quality={90}
-            className="object-cover object-[center_32%] md:object-[center_28%]"
+            className="object-cover object-top"
             frameClassName="absolute inset-0 h-full w-full"
           />
         </motion.div>
 
-        {/* Extra soft wash on top of baked gradient in the photo */}
+        {/* Soft extra dissolve into charcoal for type */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(0deg, #080808 0%, rgba(8,8,8,0.55) 22%, transparent 48%)",
+              "linear-gradient(0deg, #080808 0%, rgba(8,8,8,0.72) 28%, rgba(8,8,8,0.2) 52%, transparent 70%)",
           }}
         />
       </div>
