@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import { site } from "@/lib/content";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const display = Cormorant_Garamond({
   variable: "--font-display",
@@ -9,7 +10,7 @@ const display = Cormorant_Garamond({
   weight: ["500", "600", "700"],
 });
 
-const body = Outfit({
+const body = Plus_Jakarta_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -18,13 +19,13 @@ const body = Outfit({
 export const metadata: Metadata = {
   title: "Jota's Bar e Restaurante | Liberdade, São Paulo",
   description:
-    "Boteco paulista moderno na Liberdade. Pratos do dia, lanches artesanais, beirutes e porções — Av. da Liberdade, 9. Todos os dias das 6h às 23h. Faixa R$ 40–60.",
+    "Boteco paulista moderno na Liberdade. Pratos do dia, lanches artesanais, beirutes e porções — Av. da Liberdade, 9. Seg–qui 6h–23h · Sex–dom 6h–23h30. Faixa R$ 40–60.",
   metadataBase: new URL("https://jotas-site.vercel.app"),
   openGraph: {
     title: "Jota's Bar e Restaurante",
     description:
-      "Tamanho dos seus sonhos. Comida boa, bar cheio e Liberdade no endereço. Todos os dias das 6h às 23h.",
-    images: ["/brand/fachada.png"],
+      "Tamanho dos seus sonhos. Comida boa, bar cheio e Liberdade no endereço. Seg–qui 6h–23h · Sex–dom até 23h30.",
+    images: ["/brand/wordmark.jpg"],
     locale: "pt_BR",
     type: "website",
   },
@@ -34,7 +35,7 @@ const restaurantJsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   name: site.name,
-  image: ["https://jotas-site.vercel.app/brand/fachada.png"],
+  image: ["https://jotas-site.vercel.app/brand/fachada-hero.jpg"],
   url: "https://jotas-site.vercel.app",
   telephone: site.phoneTel,
   priceRange: site.priceRange,
@@ -50,17 +51,15 @@ const restaurantJsonLd = {
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
       opens: site.hours.opens,
-      closes: site.hours.closes,
+      closes: site.hours.closesWeekday,
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Friday", "Saturday", "Sunday"],
+      opens: site.hours.opens,
+      closes: site.hours.closesWeekend,
     },
   ],
 };
@@ -69,7 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${display.variable} ${body.variable} h-full antialiased`}
+      className={cn("h-full antialiased", display.variable, body.variable)}
     >
       <body className="min-h-full flex flex-col atmosphere">
         <script
