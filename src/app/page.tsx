@@ -3,7 +3,6 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { InfoHours } from "@/components/InfoHours";
 import { Menu } from "@/components/Menu";
-import { Reservations } from "@/components/Reservations";
 import { StickyWhatsApp } from "@/components/StickyWhatsApp";
 import { Visit } from "@/components/Visit";
 import { VisualBanner } from "@/components/VisualBanner";
@@ -23,7 +22,6 @@ export default function Home() {
         <VisualBanner />
         <Menu />
         <Visit />
-        <Reservations />
       </main>
       <Footer />
       <StickyWhatsApp />

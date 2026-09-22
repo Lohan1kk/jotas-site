@@ -9,10 +9,9 @@ const links = [
   { href: "#casa", label: "A casa" },
   { href: "#cardapio", label: "Cardápio" },
   { href: "#visita", label: "Visita" },
-  { href: "#reservas", label: "Reservas" },
 ];
 
-/** Sticky glass nav — dark luxury. */
+/** Sticky nav — tinta sólida, leitura limpa. */
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -43,13 +42,13 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
         scrolled
-          ? "border-white/10 bg-black/40 backdrop-blur-md"
-          : "border-transparent bg-gradient-to-b from-black/70 to-transparent"
+          ? "border-white/10 bg-[#080808]/95 backdrop-blur-md"
+          : "border-transparent bg-gradient-to-b from-[#080808]/90 to-transparent"
       }`}
     >
       <div className="section-pad mx-auto flex h-16 max-w-6xl items-center justify-between md:h-[4.75rem]">
         <a href="#topo" className="group flex flex-col leading-none">
-          <span className="font-display text-2xl tracking-[0.12em] text-neutral-100 transition duration-300 group-hover:text-gold md:text-[1.85rem]">
+          <span className="font-display text-2xl tracking-[0.12em] text-[#f5f5f5] transition duration-300 group-hover:text-gold md:text-[1.85rem]">
             {site.shortName}
           </span>
           <span className="mt-0.5 text-[0.58rem] uppercase tracking-[0.34em] text-neutral-400">
@@ -62,28 +61,26 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-[0.68rem] uppercase tracking-[0.24em] text-neutral-100/85 transition duration-300 hover:text-gold"
+              className="text-[0.68rem] uppercase tracking-[0.24em] text-[#f5f5f5]/90 transition duration-300 hover:text-gold"
             >
               {link.label}
             </a>
           ))}
           <motion.a
-            href={site.whatsappReserve}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#cardapio"
             className="btn-primary !px-4 !py-2.5"
             whileHover={reduce ? undefined : { y: -1 }}
             whileTap={reduce ? undefined : { scale: 0.98 }}
             transition={{ duration: 0.3 }}
           >
-            Reservar
+            Cardápio
           </motion.a>
         </nav>
 
         <button
           ref={buttonRef}
           type="button"
-          className="flex h-11 w-11 items-center justify-center text-neutral-100 lg:hidden"
+          className="flex h-11 w-11 items-center justify-center text-[#f5f5f5] lg:hidden"
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           aria-expanded={open}
           aria-controls={panelId}
@@ -107,7 +104,7 @@ export function Header() {
         {open && (
           <motion.div
             id={panelId}
-            className="border-t border-white/10 bg-black/90 px-6 py-8 backdrop-blur-md lg:hidden gpu-layer"
+            className="border-t border-white/10 bg-[#080808] px-6 py-8 lg:hidden gpu-layer"
             initial={reduce ? false : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reduce ? undefined : { opacity: 0, y: -8 }}
@@ -118,20 +115,18 @@ export function Header() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm uppercase tracking-[0.22em] text-neutral-100"
+                  className="text-sm uppercase tracking-[0.22em] text-[#f5f5f5]"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
               <a
-                href={site.whatsappReserve}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#cardapio"
                 className="btn-primary mt-2 w-fit"
                 onClick={() => setOpen(false)}
               >
-                Reservar
+                Cardápio
               </a>
             </nav>
           </motion.div>

@@ -28,7 +28,7 @@ export function VisualBanner() {
               <p className="text-[0.7rem] uppercase tracking-[0.4em] text-gold">
                 {c.bannerEyebrow}
               </p>
-              <p className="mt-5 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-wide text-neutral-100">
+              <p className="mt-5 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-wide text-[#f5f5f5]">
                 {c.bannerTitle}
               </p>
               <p className="mt-5 max-w-lg text-base font-light leading-relaxed text-neutral-300 md:text-lg">

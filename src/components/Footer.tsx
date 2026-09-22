@@ -1,29 +1,21 @@
 "use client";
 
 import { FadeIn } from "@/components/motion";
-import { MediaImage } from "@/components/MediaImage";
 import { site } from "@/lib/content";
-
-const thumbs = [
-  "/brand/interior-bar.png",
-  "/brand/bar-pour.png",
-  "/brand/mid-banner.png",
-  "/brand/fachada-hero.jpg",
-] as const;
 
 export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-[#080808]">
-      <div className="section-pad mx-auto grid max-w-6xl gap-12 py-14 md:grid-cols-[1.1fr_0.9fr_1fr] md:gap-10 md:py-16">
+      <div className="section-pad mx-auto grid max-w-6xl gap-10 py-14 md:grid-cols-2 md:gap-16 md:py-16">
         <FadeIn>
-          <p className="font-display text-3xl tracking-[0.1em] text-neutral-100">
+          <p className="font-display text-3xl tracking-[0.1em] text-[#f5f5f5]">
             {site.shortName}
           </p>
           <p className="mt-2 text-[0.62rem] uppercase tracking-[0.3em] text-neutral-400">
             Bar e Restaurante
           </p>
-          <p className="mt-5 max-w-xs text-sm font-light leading-relaxed text-neutral-400">
-            {site.tagline}. Boteco da Liberdade — o ritmo da casa.
+          <p className="mt-5 max-w-sm text-sm font-light leading-relaxed text-neutral-400">
+            {site.tagline}. Boteco da Liberdade.
           </p>
         </FadeIn>
 
@@ -62,33 +54,6 @@ export function Footer() {
             </li>
           </ul>
           <p className="mt-6 text-sm text-neutral-400">{site.hours.label}</p>
-        </FadeIn>
-
-        <FadeIn delay={0.1}>
-          <p className="text-[0.62rem] uppercase tracking-[0.28em] text-gold">
-            Instagram
-          </p>
-          <div className="mt-4 grid grid-cols-4 gap-1.5">
-            {thumbs.map((src) => (
-              <a
-                key={src}
-                href={site.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative aspect-square overflow-hidden bg-neutral-900"
-              >
-                <MediaImage
-                  src={src}
-                  alt=""
-                  fill
-                  sizes="80px"
-                  quality={70}
-                  className="object-cover transition duration-300 hover:scale-105"
-                  frameClassName="absolute inset-0"
-                />
-              </a>
-            ))}
-          </div>
         </FadeIn>
       </div>
 

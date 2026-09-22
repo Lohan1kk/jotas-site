@@ -11,7 +11,7 @@ export function StickyWhatsApp() {
       href={site.whatsapp}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 border border-gold/40 bg-ink/95 px-4 py-3 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-gold backdrop-blur-md md:bottom-8 md:right-8 gpu-layer"
+      className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 border border-white/15 bg-[#080808]/95 px-4 py-3 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-[#f5f5f5] backdrop-blur-md md:bottom-8 md:right-8 gpu-layer"
       aria-label="Abrir WhatsApp do Jota's"
       initial={reduce ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -19,11 +19,10 @@ export function StickyWhatsApp() {
       whileHover={
         reduce
           ? undefined
-          : { y: -2, backgroundColor: "rgba(212,175,55,1)", color: "#0a0a0a" }
+          : { y: -2, backgroundColor: "#d4af37", color: "#080808", borderColor: "#d4af37" }
       }
       whileTap={reduce ? undefined : { scale: 0.98 }}
     >
-      <span aria-hidden="true">✦</span>
       WhatsApp
     </motion.a>
   );

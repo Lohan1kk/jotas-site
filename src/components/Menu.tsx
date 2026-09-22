@@ -44,7 +44,7 @@ export function Menu() {
           </p>
           <h2
             id={`${baseId}-heading`}
-            className="mt-4 max-w-2xl font-display text-4xl leading-tight tracking-wide text-neutral-100 md:text-5xl"
+            className="mt-4 max-w-2xl font-display text-4xl leading-tight tracking-wide text-[#f5f5f5] md:text-5xl"
           >
             {c.menuTitle}
           </h2>
@@ -72,7 +72,7 @@ export function Menu() {
                   tabIndex={selected ? 0 : -1}
                   onClick={() => setTab(item.id)}
                   className={`relative shrink-0 px-4 py-3.5 text-[0.68rem] uppercase tracking-[0.18em] transition duration-300 ${
-                    selected ? "text-gold" : "text-neutral-400 hover:text-neutral-100"
+                    selected ? "text-gold" : "text-neutral-400 hover:text-[#f5f5f5]"
                   }`}
                 >
                   {item.label}
@@ -124,7 +124,7 @@ export function Menu() {
               frameClassName="aspect-[4/5] w-full"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080808]/70 to-transparent" />
-            <p className="absolute bottom-6 left-6 right-6 font-display text-2xl tracking-wide text-neutral-100">
+            <p className="absolute bottom-6 left-6 right-6 font-display text-2xl tracking-wide text-[#f5f5f5]">
               Liberdade · São Paulo
             </p>
           </FadeIn>
@@ -144,7 +144,7 @@ function NamedList({
       {items.map((item) => (
         <li key={item.name} className="flex items-start justify-between gap-6 py-5">
           <div>
-            <p className="font-display text-xl tracking-wide text-neutral-100 md:text-2xl">
+            <p className="font-display text-xl tracking-wide text-[#f5f5f5] md:text-2xl">
               {item.name}
             </p>
             <p className="mt-1 text-sm font-light text-neutral-400">{item.detail}</p>
@@ -164,7 +164,7 @@ function SimpleList({ items }: { items: readonly string[] }) {
       {items.map((name) => (
         <li
           key={name}
-          className="border-b border-white/10 py-4 font-display text-lg tracking-wide text-neutral-100"
+          className="border-b border-white/10 py-4 font-display text-lg tracking-wide text-[#f5f5f5]"
         >
           {name}
         </li>
@@ -185,7 +185,7 @@ function PratosList() {
             {day.items.map((item) => (
               <li
                 key={item}
-                className="font-display text-lg tracking-wide text-neutral-100"
+                className="font-display text-lg tracking-wide text-[#f5f5f5]"
               >
                 {item}
               </li>
@@ -210,7 +210,7 @@ function BebidasList() {
               key={item.name}
               className="flex items-baseline justify-between gap-4 py-3"
             >
-              <span className="text-neutral-100">{item.name}</span>
+              <span className="text-[#f5f5f5]">{item.name}</span>
               <span className="font-display text-lg text-gold">{item.price}</span>
             </li>
           ))}
@@ -229,7 +229,7 @@ function BebidasList() {
               key={item.name}
               className="flex items-baseline justify-between gap-4 py-3"
             >
-              <span className="text-neutral-100">{item.name}</span>
+              <span className="text-[#f5f5f5]">{item.name}</span>
               <span className="font-display text-lg text-gold">{item.price}</span>
             </li>
           ))}

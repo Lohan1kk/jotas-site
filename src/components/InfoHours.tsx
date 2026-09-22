@@ -21,7 +21,7 @@ export function InfoHours() {
           </p>
           <h2
             id="casa-heading"
-            className="mt-5 font-display text-[clamp(2rem,4vw,2.75rem)] leading-[1.1] tracking-wide text-neutral-100"
+            className="mt-5 font-display text-[clamp(2rem,4vw,2.75rem)] leading-[1.1] tracking-wide text-[#f5f5f5]"
           >
             {c.hoursTitle}
           </h2>
@@ -30,7 +30,7 @@ export function InfoHours() {
               <dt className="text-[0.75rem] uppercase tracking-[0.2em] text-neutral-400">
                 Seg–Qui
               </dt>
-              <dd className="font-display text-2xl text-neutral-100">
+              <dd className="font-display text-2xl text-[#f5f5f5]">
                 {site.hours.opens} – {site.hours.closesWeekday}
               </dd>
             </div>
@@ -38,7 +38,7 @@ export function InfoHours() {
               <dt className="text-[0.75rem] uppercase tracking-[0.2em] text-neutral-400">
                 Sex–Dom
               </dt>
-              <dd className="font-display text-2xl text-neutral-100">
+              <dd className="font-display text-2xl text-[#f5f5f5]">
                 {site.hours.opens} – {site.hours.closesWeekend}
               </dd>
             </div>
@@ -66,7 +66,7 @@ export function InfoHours() {
           <p className="text-[0.7rem] uppercase tracking-[0.4em] text-gold">
             {c.happyEyebrow}
           </p>
-          <h3 className="mt-5 font-display text-[clamp(2rem,4vw,2.75rem)] leading-[1.1] tracking-wide text-neutral-100">
+          <h3 className="mt-5 font-display text-[clamp(2rem,4vw,2.75rem)] leading-[1.1] tracking-wide text-[#f5f5f5]">
             {c.happyTitle}
           </h3>
           <p className="mt-8 text-sm leading-relaxed text-neutral-400 md:text-base">
