@@ -1,71 +1,68 @@
+"use client";
+
+import { FadeIn } from "@/components/motion";
 import { site } from "@/lib/content";
 
 export function Footer() {
   return (
-    <footer className="section-pad border-t border-line py-14 pb-24 md:pb-14">
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="font-display text-4xl tracking-[0.08em] text-cream">
+    <footer className="border-t border-white/10 bg-[#080808]">
+      <div className="section-pad mx-auto grid max-w-6xl gap-10 py-14 md:grid-cols-2 md:gap-16 md:py-16">
+        <FadeIn>
+          <p className="font-display text-3xl tracking-[0.1em] text-[#f5f5f5]">
             {site.shortName}
           </p>
-          <p className="mt-2 text-sm uppercase tracking-[0.22em] text-muted">
-            Bar e Restaurante · Liberdade
+          <p className="mt-2 text-[0.62rem] uppercase tracking-[0.3em] text-neutral-400">
+            Bar e Restaurante
           </p>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/65">
-            {site.addressShort}
-            <br />
-            <a
-              href={`tel:${site.phoneTel}`}
-              className="transition hover:text-gold"
-            >
-              {site.phoneDisplay}
-            </a>{" "}
-            ·{" "}
-            <a
-              href={site.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition hover:text-gold"
-            >
-              {site.instagramHandle}
-            </a>
+          <p className="mt-5 max-w-sm text-sm font-light leading-relaxed text-neutral-400">
+            {site.tagline}. Boteco da Liberdade.
           </p>
-          <p className="mt-3 text-sm text-cream/70">{site.hours.label}</p>
-        </div>
+        </FadeIn>
 
-        <div className="max-w-md">
-          <p className="text-xs uppercase tracking-[0.22em] text-muted">
-            Pagamentos
+        <FadeIn delay={0.06}>
+          <p className="text-[0.62rem] uppercase tracking-[0.28em] text-gold">
+            Contato
           </p>
-          <p className="mt-3 text-sm leading-relaxed text-cream/70">
-            {site.payments.join(" · ")}
+          <ul className="mt-4 space-y-2 text-sm text-neutral-300">
+            <li>
+              <a
+                href={`tel:${site.phoneTel}`}
+                className="transition duration-300 hover:text-gold"
+              >
+                {site.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition duration-300 hover:text-gold"
+              >
+                {site.instagramHandle}
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition duration-300 hover:text-gold"
+              >
+                {site.addressShort}
+              </a>
+            </li>
+          </ul>
+          <p className="mt-6 text-sm text-neutral-400">{site.hours.label}</p>
+        </FadeIn>
+      </div>
+
+      <div className="border-t border-white/10">
+        <div className="section-pad mx-auto flex max-w-6xl flex-col gap-2 py-5 text-xs text-neutral-500 sm:flex-row sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {site.name}
           </p>
-          <nav
-            className="mt-6 flex flex-wrap gap-4 text-sm uppercase tracking-[0.14em] text-cream/70"
-            aria-label="Rodapé"
-          >
-            <a href="#cardapio" className="hover:text-gold">
-              Cardápio
-            </a>
-            <a href="#delivery" className="hover:text-gold">
-              Delivery
-            </a>
-            <a href="#reservas" className="hover:text-gold">
-              Reservas
-            </a>
-            <a
-              href={site.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-gold"
-            >
-              Maps
-            </a>
-          </nav>
-          <p className="mt-6 text-xs text-muted">
-            © {new Date().getFullYear()} {site.name}. Reservas e delivery pelo
-            WhatsApp.
-          </p>
+          <p>Av. da Liberdade, 9 — São Paulo, SP</p>
         </div>
       </div>
     </footer>
