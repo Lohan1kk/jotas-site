@@ -49,20 +49,17 @@ export function Hero() {
             priority
             sizes="100vw"
             quality={90}
-            className="object-cover object-[center_26%]"
+            className="object-cover object-[center_32%] md:object-[center_28%]"
             frameClassName="absolute inset-0 h-full w-full"
           />
         </motion.div>
 
-        {/* Degrade cinematico: foto → ink (camadas suaves, sem corte seco) */}
+        {/* Extra soft wash on top of baked gradient in the photo */}
         <div
           className="absolute inset-0"
           style={{
-            background: [
-              "linear-gradient(180deg, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.12) 18%, transparent 38%)",
-              "linear-gradient(0deg, #080808 0%, rgba(8,8,8,0.92) 18%, rgba(8,8,8,0.55) 42%, rgba(8,8,8,0.18) 62%, transparent 78%)",
-              "radial-gradient(ellipse 90% 55% at 50% 100%, rgba(8,8,8,0.88), transparent 70%)",
-            ].join(", "),
+            background:
+              "linear-gradient(0deg, #080808 0%, rgba(8,8,8,0.55) 22%, transparent 48%)",
           }}
         />
       </div>
