@@ -21,11 +21,13 @@ export const site = {
     "https://www.google.com/maps?q=Av.+da+Liberdade,+9,+Liberdade,+S%C3%A3o+Paulo,+SP,+01503-001&output=embed",
   priceRange: "R$ 40–60",
   reviewsCount: "4.786",
-  /** Confirmed: every day 06:00–23:00 */
+  /** Seg–qui 06:00–23:00 · Sex–dom 06:00–23:30 */
   hours: {
-    label: "Todos os dias das 6h às 23h",
+    label: "Seg–qui 6h–23h · Sex–dom 6h–23h30",
+    short: "6h–23h · sex–dom até 23h30",
     opens: "06:00",
-    closes: "23:00",
+    closesWeekday: "23:00",
+    closesWeekend: "23:30",
   },
   payments: [
     "Mastercard",
@@ -39,13 +41,48 @@ export const site = {
     "Alelo",
   ],
   welcomeStrip: [
-    "Bem-vindo à Liberdade",
+    "Jota's",
+    "Liberdade",
+    "Bar e Restaurante",
     "Pratos do dia",
     "Lanches artesanais",
     "Beirutes",
     "Porções para a mesa",
+    "Happy Hour",
     "Delivery pelo WhatsApp",
+    "Tamanho dos seus sonhos",
   ],
+  /** Editorial copy — dark luxury tone, brand-true */
+  copy: {
+    heroEyebrow: "Liberdade · São Paulo",
+    heroTitle: "JOTA'S",
+    heroLead: "Bar e restaurante no coração da Liberdade",
+    heroBody: "",
+    heroCtaPrimary: "Reservar mesa",
+    heroCtaSecondary: "Ver cardápio",
+    hoursEyebrow: "Horários",
+    hoursTitle: "Aberto todos os dias",
+    happyEyebrow: "Happy Hour",
+    happyTitle: "O ritmo da casa",
+    happyBody:
+      "Cerveja gelada, caipirinha e porções para acompanhar — o clima do Jota's na Liberdade.",
+    happyNote: "Consulte promoções do dia pelo WhatsApp.",
+    bannerEyebrow: "A casa",
+    bannerTitle: "Madeira, bar e conversa boa",
+    bannerBody: "Um boteco paulista moderno — acolhedor, social e com comida de verdade.",
+    menuEyebrow: "Cardápio",
+    menuTitle: "O que pedimos na casa",
+    menuLead:
+      "Lanches, beirutes, pratos do dia e porções. Sucos e bebidas com preço; demais valores pelo WhatsApp ou delivery.",
+    visitEyebrow: "Visite",
+    visitTitle: "Na Av. da Liberdade, 9",
+    promoTitle: "Sábado na casa",
+    promoBody:
+      "Cerveja gelada, caipirinha e relembrar histórias com os amigos — o clima do nosso jogo americano.",
+    reserveEyebrow: "Reservas",
+    reserveTitle: "Sua mesa te espera",
+    reserveBody: "Reserve pelo WhatsApp. Confirmamos horário e quantidade de pessoas.",
+  },
 } as const;
 
 export const pratosDoDia = [
