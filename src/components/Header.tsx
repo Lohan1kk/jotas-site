@@ -40,18 +40,21 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "border-white/10 bg-[#080808]/95 backdrop-blur-md"
-          : "border-transparent bg-gradient-to-b from-[#080808]/90 to-transparent"
+          ? "border-b border-white/10 bg-[#080808]/95 backdrop-blur-md"
+          : "border-b-0 bg-gradient-to-b from-[#080808]/90 to-transparent"
       }`}
     >
       <div className="section-pad mx-auto flex h-16 max-w-6xl items-center justify-between md:h-[4.75rem]">
-        <a href="#topo" className="group flex flex-col leading-none">
+        <a
+          href="#topo"
+          className="group flex flex-col gap-1 leading-none no-underline"
+        >
           <span className="font-display text-2xl tracking-[0.12em] text-[#f5f5f5] transition duration-300 group-hover:text-gold md:text-[1.85rem]">
             {site.shortName}
           </span>
-          <span className="mt-0.5 text-[0.58rem] uppercase tracking-[0.34em] text-neutral-400">
+          <span className="text-[0.58rem] uppercase tracking-[0.34em] text-neutral-400">
             Bar e Restaurante
           </span>
         </a>

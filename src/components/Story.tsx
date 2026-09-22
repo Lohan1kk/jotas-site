@@ -27,7 +27,7 @@ export function Story() {
             eyebrow="A casa"
             titleId="historia-heading"
             title="Madeira, bar cheio e mesa para os amigos"
-            lead="O Jota's é boteco paulista moderno: acolhedor, social e com comida de verdade. Mezanino, balcão e o ritmo da Liberdade logo na porta."
+            lead="O Jota's é boteco paulista moderno: acolhedor, social e com comida de verdade. Mezanino e o ritmo da Liberdade logo na porta."
           />
 
           <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-7 border-t border-line pt-8">

@@ -51,7 +51,7 @@ export function InfoHours() {
         <FadeIn delay={0.08} className="relative mx-auto w-full max-w-sm lg:max-w-none">
           <MediaImage
             src="/brand/interior-bar.png"
-            alt="Interior do bar do Jota's — balcão e prateleiras"
+            alt="Interior do bar do Jota's — prateleiras e salão"
             width={760}
             height={1000}
             sizes="(max-width: 1024px) 85vw, 380px"

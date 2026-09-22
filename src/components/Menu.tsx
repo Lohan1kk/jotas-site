@@ -142,16 +142,11 @@ function NamedList({
   return (
     <ul className="divide-y divide-white/10">
       {items.map((item) => (
-        <li key={item.name} className="flex items-start justify-between gap-6 py-5">
-          <div>
-            <p className="font-display text-xl tracking-wide text-[#f5f5f5] md:text-2xl">
-              {item.name}
-            </p>
-            <p className="mt-1 text-sm font-light text-neutral-400">{item.detail}</p>
-          </div>
-          <span className="shrink-0 pt-2 text-[0.65rem] uppercase tracking-[0.2em] text-gold/85">
-            Balcão
-          </span>
+        <li key={item.name} className="py-5">
+          <p className="font-display text-xl tracking-wide text-[#f5f5f5] md:text-2xl">
+            {item.name}
+          </p>
+          <p className="mt-1 text-sm font-light text-neutral-400">{item.detail}</p>
         </li>
       ))}
     </ul>

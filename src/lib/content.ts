@@ -66,14 +66,14 @@ export const site = {
     happyTitle: "O ritmo da casa",
     happyBody:
       "Cerveja gelada, caipirinha e porções para acompanhar — o clima do Jota's na Liberdade.",
-    happyNote: "Consulte promoções do dia no balcão ou pelo WhatsApp.",
+    happyNote: "Consulte promoções do dia pelo WhatsApp.",
     bannerEyebrow: "A casa",
     bannerTitle: "Madeira, bar e conversa boa",
     bannerBody: "Um boteco paulista moderno — acolhedor, social e com comida de verdade.",
-    menuEyebrow: "Recomendações",
+    menuEyebrow: "Cardápio",
     menuTitle: "O que pedimos na casa",
     menuLead:
-      "Seleção tipográfica do cardápio. Sucos e bebidas com preço; demais valores no balcão ou delivery.",
+      "Lanches, beirutes, pratos do dia e porções. Sucos e bebidas com preço; demais valores pelo WhatsApp ou delivery.",
     visitEyebrow: "Visite",
     visitTitle: "Na Av. da Liberdade, 9",
     promoTitle: "Sábado na casa",
