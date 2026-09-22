@@ -43,7 +43,7 @@ export function Header() {
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
           ? "border-b border-white/10 bg-[#080808]/95 backdrop-blur-md"
-          : "border-b-0 bg-gradient-to-b from-[#080808]/90 to-transparent"
+          : "border-b-0 bg-transparent"
       }`}
     >
       <div className="section-pad mx-auto flex h-16 max-w-6xl items-center justify-between md:h-[4.75rem]">
