@@ -65,7 +65,7 @@ export function Hero() {
       </div>
 
       <motion.div
-        className="section-pad relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-end pb-16 pt-36 text-center md:pb-24 md:pt-44"
+        className="section-pad relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-end pb-16 pt-[58vh] text-center md:pb-24 md:pt-[56vh]"
         variants={reduce ? undefined : copyContainer}
         initial={reduce ? false : "hidden"}
         animate="show"
