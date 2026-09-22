@@ -236,9 +236,8 @@ body {
 
 .hero-ken {
   will-change: transform;
-  /* Zoom from the top so the JOTA'S sign stays in frame */
-  transform-origin: center top;
-  animation: ken-burns 36s ease-in-out infinite alternate;
+  transform-origin: center 30%;
+  animation: ken-burns 42s ease-in-out infinite alternate;
 }
 
 @keyframes ken-burns {
@@ -246,8 +245,7 @@ body {
     transform: translate3d(0, 0, 0) scale(1);
   }
   to {
-    /* Soft horizontal drift only — no upward crop of the letreiro */
-    transform: translate3d(-1.5%, 0, 0) scale(1.03);
+    transform: translate3d(-1%, 0, 0) scale(1.035);
   }
 }
 
