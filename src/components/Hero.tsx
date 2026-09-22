@@ -6,8 +6,8 @@ import { easeOutExpo } from "@/components/motion";
 import { site } from "@/lib/content";
 
 /**
- * Hero: fachada no topo + prato escuro embaixo para o brand
- * ler sem competir com o letreiro físico.
+ * Hero: fachada no terço superior; brand no prato charcoal sólido.
+ * Texto não compete com o letreiro físico.
  */
 export function Hero() {
   const reduce = useReducedMotion();
@@ -18,13 +18,17 @@ export function Hero() {
       className="relative isolate flex min-h-dvh flex-col overflow-hidden bg-[#080808]"
       aria-label="Apresentação"
     >
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+      {/* Facade band — top only */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[48%] md:h-[52%]"
+        aria-hidden="true"
+      >
         <div
           className={`absolute inset-0 ${reduce ? "" : "hero-ken"} gpu-layer`}
         >
           <MediaImage
             src="/brand/fachada.png"
-            alt="Fachada do Jota's Bar e Restaurante — Av. da Liberdade, 9"
+            alt=""
             fill
             priority
             sizes="100vw"
@@ -33,13 +37,17 @@ export function Hero() {
             frameClassName="absolute inset-0 h-full w-full"
           />
         </div>
-        {/* Dark plate — cream/gold type always sits on ink */}
-        <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-[#080808]/85 via-[#080808]/40 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-[#080808] via-[#080808]/94 to-[#080808]/20" />
-        <div className="absolute inset-0 bg-[#080808]/30" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#080808]/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#080808] to-transparent" />
       </div>
 
-      <div className="section-pad relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-end pb-20 pt-32 text-center md:pb-28 md:pt-40">
+      {/* Solid ink plate for copy */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%] bg-[#080808] md:h-[55%]"
+        aria-hidden="true"
+      />
+
+      <div className="section-pad relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-end pb-16 pt-[48vh] text-center md:pb-24 md:pt-[50vh]">
         <motion.p
           className="text-[0.7rem] font-medium uppercase tracking-[0.42em] text-gold"
           initial={reduce ? false : { opacity: 0, y: 14 }}
@@ -50,7 +58,7 @@ export function Hero() {
         </motion.p>
 
         <motion.h1
-          className="mt-5 font-display text-[clamp(3.5rem,11vw,6.5rem)] font-semibold uppercase leading-[0.9] tracking-[0.06em] text-[#f5f5f5]"
+          className="mt-4 font-display text-[clamp(3.5rem,11vw,6.25rem)] font-semibold uppercase leading-[0.9] tracking-[0.06em] text-[#f5f5f5]"
           initial={reduce ? false : { opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.06, ease: easeOutExpo }}
@@ -59,20 +67,20 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          className="mt-6 max-w-md font-display text-[clamp(1.15rem,2.2vw,1.6rem)] leading-snug text-[#f5f5f5]/95"
+          className="mt-5 max-w-md font-display text-[clamp(1.1rem,2vw,1.5rem)] leading-snug text-[#e8e8e8]"
           initial={reduce ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.18, ease: easeOutExpo }}
+          transition={{ duration: 0.7, delay: 0.16, ease: easeOutExpo }}
         >
           Bar e Restaurante
           <span className="mt-1 block text-gold">{site.tagline}</span>
         </motion.p>
 
         <motion.div
-          className="mt-10"
+          className="mt-9"
           initial={reduce ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.28, ease: easeOutExpo }}
+          transition={{ duration: 0.65, delay: 0.26, ease: easeOutExpo }}
         >
           <motion.a
             href="#cardapio"
@@ -85,6 +93,10 @@ export function Hero() {
           </motion.a>
         </motion.div>
       </div>
+
+      <span className="sr-only">
+        Fachada do Jota&apos;s Bar e Restaurante — Av. da Liberdade, 9
+      </span>
     </section>
   );
 }

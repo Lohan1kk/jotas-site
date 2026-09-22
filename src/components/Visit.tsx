@@ -24,7 +24,7 @@ export function Visit() {
           >
             {c.visitTitle}
           </h2>
-          <p className="mt-5 text-sm font-light leading-relaxed text-neutral-400 md:text-base">
+          <p className="mt-5 text-sm font-light leading-relaxed text-neutral-300 md:text-base">
             {c.promoBody}
           </p>
         </FadeIn>
@@ -50,8 +50,8 @@ export function Visit() {
             <p className="mt-4 font-display text-2xl tracking-wide text-[#f5f5f5] md:text-3xl">
               {site.addressShort}
             </p>
-            <p className="mt-4 text-sm text-neutral-400">{site.hours.label}</p>
-            <p className="mt-2 text-sm text-neutral-400">{site.phoneDisplay}</p>
+            <p className="mt-4 text-sm text-neutral-300">{site.hours.label}</p>
+            <p className="mt-2 text-sm text-neutral-300">{site.phoneDisplay}</p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
