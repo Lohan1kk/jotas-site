@@ -14,21 +14,21 @@ export function Hero() {
   return (
     <section
       id="topo"
-      className="relative isolate flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-[#080808]"
+      className="relative isolate flex min-h-dvh flex-col overflow-hidden bg-[#080808]"
       aria-label="Apresentação"
     >
-      {/* Background media — full bleed */}
+      {/* Background media — full bleed, foco no letreiro */}
       {reduce ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src="/brand/jotas-sign-hero-poster.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_22%]"
         />
       ) : (
         <video
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_22%]"
           autoPlay
           muted
           loop
@@ -42,7 +42,7 @@ export function Hero() {
         </video>
       )}
 
-      {/* Dark overlay — legibilidade do headline e CTA */}
+      {/* Dark overlay — vídeo visível no topo, texto legível embaixo */}
       <div
         className="pointer-events-none absolute inset-0 -z-10"
         aria-hidden="true"
@@ -50,74 +50,72 @@ export function Hero() {
           background: `
             linear-gradient(
               180deg,
-              rgba(8, 8, 8, 0.72) 0%,
-              rgba(8, 8, 8, 0.45) 38%,
-              rgba(8, 8, 8, 0.55) 62%,
-              rgba(8, 8, 8, 0.88) 100%
-            ),
-            radial-gradient(
-              ellipse 70% 55% at 50% 45%,
-              rgba(8, 8, 8, 0.15),
-              rgba(8, 8, 8, 0.7) 100%
+              rgba(8, 8, 8, 0.35) 0%,
+              rgba(8, 8, 8, 0.2) 32%,
+              rgba(8, 8, 8, 0.55) 58%,
+              rgba(8, 8, 8, 0.88) 78%,
+              rgba(8, 8, 8, 0.96) 100%
             )
           `,
         }}
       />
 
-      <motion.div
-        className="section-pad relative z-10 flex w-full max-w-3xl flex-col items-center px-6 pb-16 pt-24 text-center md:pb-20 md:pt-28"
-        initial={reduce ? false : { opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: easeOutExpo }}
-      >
-        <motion.p
-          className="text-[0.65rem] font-medium uppercase tracking-[0.42em] text-neutral-300"
-          initial={reduce ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: easeOutExpo }}
-        >
-          Liberdade · São Paulo
-        </motion.p>
-
-        <motion.h1
-          className="mt-5 font-display text-[clamp(2.75rem,8vw,5.5rem)] leading-[0.95] tracking-[0.08em] text-[#f5f5f5]"
-          initial={reduce ? false : { opacity: 0, y: 12 }}
+      <div className="section-pad relative z-10 flex min-h-dvh w-full flex-col justify-end pb-16 pt-28 md:pb-20 md:pt-32">
+        <motion.div
+          className="mx-auto flex w-full max-w-2xl flex-col items-center text-center"
+          initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, delay: 0.28, ease: easeOutExpo }}
+          transition={{ duration: 0.9, ease: easeOutExpo }}
         >
-          {site.shortName}
-        </motion.h1>
+          <motion.p
+            className="text-[0.65rem] font-medium uppercase tracking-[0.42em] text-neutral-300"
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: easeOutExpo }}
+          >
+            Liberdade · São Paulo
+          </motion.p>
 
-        <motion.p
-          className="mt-3 text-[0.7rem] uppercase tracking-[0.36em] text-neutral-300 md:text-[0.75rem]"
-          initial={reduce ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.38, ease: easeOutExpo }}
-        >
-          Bar e Restaurante
-        </motion.p>
+          <motion.h1
+            className="mt-4 font-display text-[clamp(2.75rem,8vw,5.25rem)] leading-[0.95] tracking-[0.08em] text-[#f5f5f5] drop-shadow-[0_2px_24px_rgba(0,0,0,0.55)]"
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.22, ease: easeOutExpo }}
+          >
+            {site.shortName}
+          </motion.h1>
 
-        <motion.p
-          className="mt-6 max-w-md font-display text-xl text-gold/95 md:text-2xl"
-          initial={reduce ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.48, ease: easeOutExpo }}
-        >
-          {site.tagline}
-        </motion.p>
+          <motion.p
+            className="mt-3 text-[0.7rem] uppercase tracking-[0.36em] text-neutral-300 md:text-[0.75rem]"
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.32, ease: easeOutExpo }}
+          >
+            Bar e Restaurante
+          </motion.p>
 
-        <motion.a
-          href="#cardapio"
-          className="btn-primary mt-10 min-h-11"
-          initial={reduce ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.58, ease: easeOutExpo }}
-          whileHover={reduce ? undefined : { y: -2 }}
-          whileTap={reduce ? undefined : { scale: 0.98 }}
-        >
-          Ver cardápio
-        </motion.a>
-      </motion.div>
+          <motion.p
+            className="mt-5 max-w-md font-display text-xl text-gold/95 md:text-2xl"
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.4, ease: easeOutExpo }}
+          >
+            {site.tagline}
+          </motion.p>
+
+          <motion.a
+            href="#cardapio"
+            className="btn-primary mt-8 min-h-11"
+            initial={reduce ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.5, ease: easeOutExpo }}
+            whileHover={reduce ? undefined : { y: -2 }}
+            whileTap={reduce ? undefined : { scale: 0.98 }}
+          >
+            Ver cardápio
+          </motion.a>
+        </motion.div>
+      </div>
     </section>
   );
 }
