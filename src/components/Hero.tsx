@@ -24,11 +24,11 @@ export function Hero() {
           src="/brand/jotas-sign-hero-poster.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_22%]"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_15%] sm:object-[center_18%]"
         />
       ) : (
         <video
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_22%]"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_15%] sm:object-[center_18%]"
           autoPlay
           muted
           loop
