@@ -37,6 +37,17 @@ export function Hero() {
           poster="/brand/jotas-sign-hero-poster.jpg"
           aria-hidden="true"
         >
+          {/* Mobile-first lighter encodes, then desktop HQ */}
+          <source
+            src="/brand/jotas-sign-hero-mobile.webm"
+            type="video/webm"
+            media="(max-width: 767px)"
+          />
+          <source
+            src="/brand/jotas-sign-hero-mobile.mp4"
+            type="video/mp4"
+            media="(max-width: 767px)"
+          />
           <source src="/brand/jotas-sign-hero.webm" type="video/webm" />
           <source src="/brand/jotas-sign-hero.mp4" type="video/mp4" />
         </video>
