@@ -5,8 +5,8 @@ import { easeOutExpo } from "@/components/motion";
 import { site } from "@/lib/content";
 
 /**
- * Hero Claude-style: fundo escuro, letreiro animado centrado,
- * tipografia mínima — a marca vive na imagem.
+ * Hero full-bleed: vídeo de fundo object-cover, overlay escuro,
+ * marca + headline + CTA legíveis — dark luxury gastronômico.
  */
 export function Hero() {
   const reduce = useReducedMotion();
@@ -17,98 +17,107 @@ export function Hero() {
       className="relative isolate flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-[#080808]"
       aria-label="Apresentação"
     >
-      {/* Soft gold ambient — echoes the sign halo */}
+      {/* Background media — full bleed */}
+      {reduce ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src="/brand/jotas-sign-hero-poster.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+      ) : (
+        <video
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/brand/jotas-sign-hero-poster.jpg"
+          aria-hidden="true"
+        >
+          <source src="/brand/jotas-sign-hero.webm" type="video/webm" />
+          <source src="/brand/jotas-sign-hero.mp4" type="video/mp4" />
+        </video>
+      )}
+
+      {/* Dark overlay — legibilidade do headline e CTA */}
       <div
         className="pointer-events-none absolute inset-0 -z-10"
         aria-hidden="true"
         style={{
-          background:
-            "radial-gradient(ellipse 55% 45% at 50% 42%, rgba(212,175,55,0.09), transparent 70%)",
+          background: `
+            linear-gradient(
+              180deg,
+              rgba(8, 8, 8, 0.72) 0%,
+              rgba(8, 8, 8, 0.45) 38%,
+              rgba(8, 8, 8, 0.55) 62%,
+              rgba(8, 8, 8, 0.88) 100%
+            ),
+            radial-gradient(
+              ellipse 70% 55% at 50% 45%,
+              rgba(8, 8, 8, 0.15),
+              rgba(8, 8, 8, 0.7) 100%
+            )
+          `,
         }}
       />
 
       <motion.div
-        className="section-pad relative z-10 flex w-full max-w-lg flex-col items-center text-center"
-        initial={reduce ? false : { opacity: 0, y: 16 }}
+        className="section-pad relative z-10 flex w-full max-w-3xl flex-col items-center px-6 pb-16 pt-24 text-center md:pb-20 md:pt-28"
+        initial={reduce ? false : { opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: easeOutExpo }}
       >
-        <motion.div
-          className="relative w-full max-w-[min(100%,22rem)] sm:max-w-[24rem]"
-          initial={reduce ? false : { opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, ease: easeOutExpo }}
-        >
-          {reduce ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src="/brand/jotas-sign-hero-poster.jpg"
-              alt="Letreiro Jota's Bar e Restaurante com halo dourado"
-              width={406}
-              height={722}
-              className="mx-auto h-auto w-full select-none"
-              draggable={false}
-            />
-          ) : (
-            <video
-              className="mx-auto h-auto w-full select-none"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              poster="/brand/jotas-sign-hero-poster.jpg"
-              aria-label="Letreiro Jota's Bar e Restaurante com halo dourado"
-            >
-              <source src="/brand/jotas-sign-hero.webm" type="video/webm" />
-              <source src="/brand/jotas-sign-hero.mp4" type="video/mp4" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/brand/jotas-sign-hero.gif"
-                alt="Letreiro Jota's Bar e Restaurante com halo dourado"
-                width={270}
-                height={480}
-                className="mx-auto h-auto w-full"
-              />
-            </video>
-          )}
-        </motion.div>
-
         <motion.p
-          className="mt-10 text-[0.65rem] font-medium uppercase tracking-[0.42em] text-neutral-400"
+          className="text-[0.65rem] font-medium uppercase tracking-[0.42em] text-neutral-300"
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.35, ease: easeOutExpo }}
+          transition={{ duration: 0.7, delay: 0.2, ease: easeOutExpo }}
         >
           Liberdade · São Paulo
         </motion.p>
 
+        <motion.h1
+          className="mt-5 font-display text-[clamp(2.75rem,8vw,5.5rem)] leading-[0.95] tracking-[0.08em] text-[#f5f5f5]"
+          initial={reduce ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 0.28, ease: easeOutExpo }}
+        >
+          {site.shortName}
+        </motion.h1>
+
         <motion.p
-          className="mt-3 font-display text-lg text-gold/90 md:text-xl"
+          className="mt-3 text-[0.7rem] uppercase tracking-[0.36em] text-neutral-300 md:text-[0.75rem]"
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.45, ease: easeOutExpo }}
+          transition={{ duration: 0.7, delay: 0.38, ease: easeOutExpo }}
+        >
+          Bar e Restaurante
+        </motion.p>
+
+        <motion.p
+          className="mt-6 max-w-md font-display text-xl text-gold/95 md:text-2xl"
+          initial={reduce ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.48, ease: easeOutExpo }}
         >
           {site.tagline}
         </motion.p>
 
         <motion.a
           href="#cardapio"
-          className="btn-primary mt-8 min-h-11"
-          initial={reduce ? false : { opacity: 0, y: 8 }}
+          className="btn-primary mt-10 min-h-11"
+          initial={reduce ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.55, ease: easeOutExpo }}
+          transition={{ duration: 0.65, delay: 0.58, ease: easeOutExpo }}
           whileHover={reduce ? undefined : { y: -2 }}
           whileTap={reduce ? undefined : { scale: 0.98 }}
         >
           Ver cardápio
         </motion.a>
       </motion.div>
-
-      {/* Screen-reader brand (visible brand is the sign) */}
-      <h1 className="sr-only">
-        {site.shortName} — Bar e Restaurante · {site.tagline}
-      </h1>
     </section>
   );
 }
