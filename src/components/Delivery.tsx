@@ -1,47 +1,59 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
+import { Section } from "@/components/Section";
+import { SectionHeading } from "@/components/SectionHeading";
 import { site } from "@/lib/content";
 
 export function Delivery() {
+  const reduce = useReducedMotion();
+
   return (
-    <section
-      id="delivery"
-      className="section-pad border-t border-line py-20 md:py-28"
-      aria-labelledby="delivery-heading"
-    >
-      <Reveal className="mx-auto max-w-7xl">
-        <div className="relative overflow-hidden border border-line bg-gradient-to-br from-ink-soft via-ink to-seat/40 px-6 py-12 md:px-12 md:py-16">
-          <div
-            className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-gold/10 blur-3xl"
-            aria-hidden="true"
+    <Section id="delivery" labelledBy="delivery-heading">
+      <Reveal>
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
+          <SectionHeading
+            index="03"
+            eyebrow="Delivery"
+            titleId="delivery-heading"
+            title="Pedido no WhatsApp"
+            lead={`Mesmo número do salão: ${site.phoneDisplay}. Reserva e pedido no mesmo canal.`}
           />
-          <p className="text-xs uppercase tracking-[0.32em] text-gold">
-            Delivery
-          </p>
-          <h2
-            id="delivery-heading"
-            className="mt-4 max-w-xl font-display text-4xl leading-tight text-cream md:text-5xl"
-          >
-            Pedido no WhatsApp
-          </h2>
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-cream/70">
-            Mesmo número do salão: {site.phoneDisplay}. Aceitamos{" "}
-            {site.payments.slice(0, 5).join(", ")} e mais — confira no flyer.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={site.whatsappDelivery}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              Pedir delivery
-            </a>
-            <a href={`tel:${site.phoneTel}`} className="btn-ghost">
-              Ligar agora
-            </a>
+
+          <div className="panel flex flex-col justify-between p-6 md:p-8">
+            <div>
+            <p className="text-[0.8125rem] uppercase tracking-[0.2em] text-gold">
+              Pagamentos
+            </p>
+              <p className="mt-3 text-[0.9375rem] leading-relaxed text-cream/90">
+                {site.payments.join(" · ")}
+              </p>
+            </div>
+
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <motion.a
+                href={site.whatsappDelivery}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+                whileHover={reduce ? undefined : { y: -2 }}
+                whileTap={reduce ? undefined : { scale: 0.98 }}
+              >
+                Pedir delivery
+              </motion.a>
+              <motion.a
+                href={`tel:${site.phoneTel}`}
+                className="btn-ghost"
+                whileHover={reduce ? undefined : { y: -2 }}
+                whileTap={reduce ? undefined : { scale: 0.98 }}
+              >
+                Ligar agora
+              </motion.a>
+            </div>
           </div>
         </div>
       </Reveal>
-    </section>
+    </Section>
   );
 }
